@@ -13,6 +13,7 @@ public abstract class SimulationCore<T> {
 
     public interface ResultListener<T> {
         void onReplicationFinished(T result);
+
         void onContinuousUpdate(T result);
     }
 

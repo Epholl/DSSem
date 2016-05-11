@@ -9,7 +9,9 @@ public class Sem2SimulationRunner implements Runnable {
 
     public interface Listener {
         void onFinalResults(StatisticCounter averageTime, StatisticCounter totalLoaderWait, StatisticCounter avgLoaderWait, StatisticCounter avgLoaderQueue, StatisticCounter totalUnloaderWait, StatisticCounter AvgUnloaderWait, StatisticCounter avgUnloaderQueue);
+
         void onPartialResults(int iterationCount, double averageTime);
+
         void onContinousUpdate(Sem2Results results);
     }
 
@@ -61,12 +63,12 @@ public class Sem2SimulationRunner implements Runnable {
                 break;
             }
             singleRun();
-            if(i % 1000 == 0 && simListener != null) {
+            if (i % 1000 == 0 && simListener != null) {
                 simListener.onPartialResults(i, timeCounter.getMean());
             }
         }
         simListener.onPartialResults(i, timeCounter.getMean());
-        if(simListener != null) {
+        if (simListener != null) {
             simListener.onFinalResults(timeCounter, loaderWaitedTime, loaderWait, loaderQueue, unloaderWaitedTime, unloaderWait, unloaderQueue);
         }
     }
@@ -165,7 +167,7 @@ public class Sem2SimulationRunner implements Runnable {
         public void addValue(double value) {
             sum += value;
             count++;
-            sumSquared += value*value;
+            sumSquared += value * value;
         }
 
         public double getMean() {
@@ -181,11 +183,11 @@ public class Sem2SimulationRunner implements Runnable {
         }
 
         public double getLeftConfidenceInterval() {
-            return getMean() - (CONFIDENCE_INTERVAL_90_PERCENT * getDeviation()) / Math.sqrt(count-1);
+            return getMean() - (CONFIDENCE_INTERVAL_90_PERCENT * getDeviation()) / Math.sqrt(count - 1);
         }
 
         public double getRightConfidenceInterval() {
-            return getMean() + (CONFIDENCE_INTERVAL_90_PERCENT * getDeviation()) / Math.sqrt(count-1);
+            return getMean() + (CONFIDENCE_INTERVAL_90_PERCENT * getDeviation()) / Math.sqrt(count - 1);
         }
     }
 }

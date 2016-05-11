@@ -20,7 +20,7 @@ public class EmpiricRandom<T extends Number> extends RandomGenerator<T> {
 
         public Builder<T> addGenerator(double probability, RandomGenerator<T> generator) {
 
-            for (RandomPair<T> pair: random.randoms) {
+            for (RandomPair<T> pair : random.randoms) {
                 if (pair.generator == generator) {
                     throw new IllegalArgumentException("A generator that is already used within the random was inserted again.");
                 }
@@ -56,7 +56,7 @@ public class EmpiricRandom<T extends Number> extends RandomGenerator<T> {
         double val = nextDoubleValue();
 
         for (RandomPair<T> pair : randoms) {
-            if (val <pair.getProbability()) {
+            if (val < pair.getProbability()) {
                 return pair.getValue();
             }
         }

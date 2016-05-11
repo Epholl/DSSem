@@ -26,7 +26,7 @@ public class BumpyRoad extends SimulationComponent {
         double breakupTime = vehicle.calculateTimeSpentRepairing();
         double arriveTime = arriveTimeWithoutBreakup + breakupTime;
 
-        vehicle.setState(vehicle.isBreakdown()?
+        vehicle.setState(vehicle.isBreakdown() ?
                 Vehicle.STATE_BREAKDOWN + getName() : Vehicle.STATE_TRAVELLING + getName());
 
         simulationCore.addEvent(new TravelFinishedEvent(arriveTime, vehicle, this));

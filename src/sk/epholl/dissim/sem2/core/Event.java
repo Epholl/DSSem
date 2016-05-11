@@ -42,7 +42,7 @@ public abstract class Event implements Comparable<Event> {
         if (Math.abs(occurTime - o.occurTime) < EPSILON) {
             return simulationEnrollId < o.simulationEnrollId ? -1 : 1;
         } else {
-            return occurTime < o.occurTime? -1 : 1;
+            return occurTime < o.occurTime ? -1 : 1;
         }
     }
 }

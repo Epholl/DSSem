@@ -75,7 +75,7 @@ public class Loader extends SimulationComponent {
         public double averageQueueLength;
         public double averageWaitingTime;
 
-        public State(double cargoAmount, int queueLength, double waitingTimeSum,  double averageQueueLength, double averageWaitingTime) {
+        public State(double cargoAmount, int queueLength, double waitingTimeSum, double averageQueueLength, double averageWaitingTime) {
             this.cargoAmount = cargoAmount;
             this.queueLength = queueLength;
             this.waitingTimeSum = waitingTimeSum;

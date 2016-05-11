@@ -32,7 +32,7 @@ public abstract class SimulationComponent implements Cloneable {
         this.name = name;
     }
 
-    public void setOnFinishedListener (EventFinishedListener listener) {
+    public void setOnFinishedListener(EventFinishedListener listener) {
         this.onFinishedListener = listener;
     }
 

@@ -1,4 +1,4 @@
-package sk.epholl.dissim.sem2.inputanalysis;
+package sk.epholl.dissim.sem3.inputanalysis;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -48,7 +48,7 @@ public class InputParser {
             String[] sDate = dateAndTime[0].split("\\.");
             String[] sTime = dateAndTime[1].split(":");
 
-            datee.set(Integer.parseInt(sDate[2]), Integer.parseInt(sDate[1])+1, Integer.parseInt(sDate[0]),
+            datee.set(Integer.parseInt(sDate[2]), Integer.parseInt(sDate[1]) + 1, Integer.parseInt(sDate[0]),
                     Integer.parseInt(sTime[0]), Integer.parseInt(sTime[1]), 00);
 
             date = datee.getTime().getTime();
@@ -91,6 +91,6 @@ public class InputParser {
 
     public static void printInfo(long sum, long count) {
         System.out.println("Total sum: " + sum + ", number of lines: " + count);
-        System.out.println("Average: " + String.format("%.3f", ((double)sum)/count));
+        System.out.println("Average: " + String.format("%.3f", ((double) sum) / count));
     }
 }

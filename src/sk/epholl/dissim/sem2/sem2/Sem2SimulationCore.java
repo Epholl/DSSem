@@ -47,14 +47,14 @@ public class Sem2SimulationCore extends SimulationCore<Sem2Results> {
 
     public void setVehicleVariant(int variantIndex) {
         vehicles.clear();
-        for (int i: params.vehicleCombinations[variantIndex]) {
+        for (int i : params.vehicleCombinations[variantIndex]) {
             vehicles.add(params.availableVehicles[i].newCopy());
         }
     }
 
     @Override
     public void start() {
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             loader.accept(vehicle);
         }
         super.start();
@@ -69,7 +69,7 @@ public class Sem2SimulationCore extends SimulationCore<Sem2Results> {
     public Sem2Results getResults() {
 
         List<Vehicle> vehicleClones = new ArrayList<>();
-        for (Vehicle v: vehicles) {
+        for (Vehicle v : vehicles) {
             vehicleClones.add(v.clone());
         }
         Loader.State loaderState = loader.getState();

@@ -6,32 +6,24 @@ import javax.swing.*;
  * Created by Tomáš on 14.04.2016.
  */
 public class Application {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new Application();
     }
 
-    public Application()
-    {
+    public Application() {
         startSwingGUI();
     }
 
-    public void startSwingGUI()
-    {
-        try
-        {
+    public void startSwingGUI() {
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Cannot set native look and feel:");
         }
 
-        SwingUtilities.invokeLater(new Runnable()
-        {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 new MainWindow();
             }
         });
