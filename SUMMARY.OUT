@@ -1,0 +1,17 @@
+Fit All
+
+Document:  C:\dev\Java\DSSem\outputTimeC.txt
+Data File: C:\dev\Java\DSSem\outputTimeC.txt
+
+
+Function       Sq Error
+-----------------------
+Gamma          0.00104
+Exponential    0.00123
+Erlang         0.00123
+Weibull        0.0013
+Beta           0.00183
+Lognormal      0.00246
+Normal         0.0267
+Triangular     0.0439
+Uniform        0.0636

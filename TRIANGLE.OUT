@@ -1,0 +1,47 @@
+
+	Distribution Summary
+
+Distribution:	Triangular   
+Expression:	TRIA(4.5, 13.3, 19.5)
+Square Error:	0.010755
+
+Chi Square Test
+  Number of intervals	= 15
+  Degrees of freedom 	= 13
+  Test Statistic     	= 420
+  Corresponding p-value	< 0.005
+
+	Data Summary
+
+Number of Data Points	= 2418
+Min Data Value       	= 5
+Max Data Value       	= 19
+Sample Mean          	= 12.4
+Sample Std Dev       	= 2.68
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 19.5
+Number of Intervals	= 15
+
+
+==================================================================
+Int.   No. of               Probability           Cumulative      
+No.    Data Pts.   x        Density               Distribution    
+------------------------------------------------------------------
+                            Data   Function       Data   Function   
+   0     8       5.00    0.00331    0.00753    0.00331    0.00753
+   1    31       6.00     0.0128     0.0226     0.0161     0.0301
+   2    93       7.00     0.0385     0.0377     0.0546     0.0678
+   3   121       8.00     0.0500     0.0527      0.105      0.121
+   4   151       9.00     0.0624     0.0678      0.167      0.188
+   5   180       10.0     0.0744     0.0829      0.242      0.271
+   6   232       11.0     0.0959     0.0979      0.337      0.369
+   7   258       12.0      0.107      0.113      0.444      0.482
+   8   316       13.0      0.131      0.128      0.575      0.610
+   9   360       14.0      0.149      0.119      0.724      0.729
+  10   387       15.0      0.160     0.0976      0.884      0.827
+  11   280       16.0      0.116     0.0759       1.00      0.902
+  12     0       17.0      0.000     0.0542       1.00      0.957
+  13     0       18.0      0.000     0.0325       1.00      0.989
+  14     1       19.0   0.000414     0.0108       1.00       1.00

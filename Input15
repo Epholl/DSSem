@@ -1,0 +1,112 @@
+
+	Distribution Summary
+
+Distribution:	Beta         
+Expression:	4.5 + 20 * BETA(3.75, 0.936)
+Square Error:	0.021197
+
+Chi Square Test
+  Number of intervals	= 16
+  Degrees of freedom 	= 13
+  Test Statistic     	= 1.27e+003
+  Corresponding p-value	< 0.005
+
+	Data Summary
+
+Number of Data Points	= 4224
+Min Data Value       	= 5
+Max Data Value       	= 24
+Sample Mean          	= 20.8
+Sample Std Dev       	= 3.86
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 24.5
+Number of Intervals	= 20
+
+
+==================================================================
+Int.   No. of               Probability           Cumulative      
+No.    Data Pts.   x        Density               Distribution    
+------------------------------------------------------------------
+                            Data   Function       Data   Function   
+   0     2       5.00   0.000473  1.18e-005   0.000473  1.18e-005
+   1    13       6.00    0.00308   0.000147    0.00355   0.000159
+   2    16       7.00    0.00379   0.000571    0.00734   0.000730
+   3    25       8.00    0.00592    0.00142     0.0133    0.00215
+   4    44       9.00     0.0104    0.00283     0.0237    0.00498
+   5    31       10.0    0.00734    0.00492     0.0310    0.00990
+   6    69       11.0     0.0163    0.00780     0.0473     0.0177
+   7    79       12.0     0.0187     0.0116     0.0661     0.0293
+   8    78       13.0     0.0185     0.0164     0.0845     0.0457
+   9    78       14.0     0.0185     0.0224      0.103     0.0682
+  10    92       15.0     0.0218     0.0297      0.125     0.0979
+  11    97       16.0     0.0230     0.0384      0.148      0.136
+  12    79       17.0     0.0187     0.0487      0.166      0.185
+  13   104       18.0     0.0246     0.0607      0.191      0.246
+  14   111       19.0     0.0263     0.0747      0.217      0.320
+  15    89       20.0     0.0211     0.0909      0.238      0.411
+  16   608       21.0      0.144      0.110      0.382      0.521
+  17   869       22.0      0.206      0.132      0.588      0.653
+  18   950       23.0      0.225      0.159      0.813      0.811
+  19   790       24.0      0.187      0.202       1.00       1.01
+
+
+=================================================================
+
+
+Data File: C:\dev\Java\DSSem\outputAmountC.txt
+
+
+Function       Sq Error
+-----------------------
+Beta           0.0212
+Weibull        0.0328
+Normal         0.0628
+Poisson        0.0715
+Triangular     0.0747
+Erlang         0.0816
+Gamma          0.0822
+Lognormal      0.0922
+Uniform        0.103
+Exponential    0.135
+
+	Distribution Summary
+
+Distribution:	Empirical    
+Expression:	CONT or DISC (0.000,  4.500,
+                              0.000,  5.500,
+                              0.004,  6.500,
+                              0.007,  7.500,
+                              0.013,  8.500,
+                              0.024,  9.500,
+                              0.031, 10.500,
+                              0.047, 11.500,
+                              0.066, 12.500,
+                              0.085, 13.500,
+                              0.103, 14.500,
+                              0.125, 15.500,
+                              0.148, 16.500,
+                              0.166, 17.500,
+                              0.191, 18.500,
+                              0.217, 19.500,
+                              0.238, 20.500,
+                              0.382, 21.500,
+                              0.588, 22.500,
+                              0.813, 23.500,
+                              0.813, 24.500)
+
+
+	Data Summary
+
+Number of Data Points	= 4224
+Min Data Value       	= 5
+Max Data Value       	= 24
+Sample Mean          	= 20.8
+Sample Std Dev       	= 3.86
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 24.5
+Number of Intervals	= 20
+

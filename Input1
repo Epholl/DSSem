@@ -1,0 +1,129 @@
+
+
+=================================================================
+
+
+Data File: C:\dev\Java\DSSem\outputAmountC.txt
+
+
+Function       Sq Error
+-----------------------
+
+	Distribution Summary
+
+Distribution:	Beta         
+Expression:	4.5 + 15 * BETA(-1.#J, -1.#J)
+Square Error:	-1.#IND00
+
+
+	Data Summary
+
+Number of Data Points	= 0
+Min Data Value       	= 1e+038
+Max Data Value       	= -1e+038
+Sample Mean          	= -1.#J
+Sample Std Dev       	= -1.#J
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 19.5
+Number of Intervals	= 15
+
+
+==================================================================
+Int.   No. of               Probability           Cumulative      
+No.    Data Pts.   x        Density               Distribution    
+------------------------------------------------------------------
+                            Data   Function       Data   Function   
+   0     0       5.00      -1.#J      -1.#J      -1.#J      -1.#J
+   1     0       6.00      -1.#J      -1.#J      -1.#J      -1.#J
+   2     0       7.00      -1.#J      -1.#J      -1.#J      -1.#J
+   3     0       8.00      -1.#J      -1.#J      -1.#J      -1.#J
+   4     0       9.00      -1.#J      -1.#J      -1.#J      -1.#J
+   5     0       10.0      -1.#J      -1.#J      -1.#J      -1.#J
+   6     0       11.0      -1.#J      -1.#J      -1.#J      -1.#J
+   7     0       12.0      -1.#J      -1.#J      -1.#J      -1.#J
+   8     0       13.0      -1.#J      -1.#J      -1.#J      -1.#J
+   9     0       14.0      -1.#J      -1.#J      -1.#J      -1.#J
+  10     0       15.0      -1.#J      -1.#J      -1.#J      -1.#J
+  11     0       16.0      -1.#J      -1.#J      -1.#J      -1.#J
+  12     0       17.0      -1.#J      -1.#J      -1.#J      -1.#J
+  13     0       18.0      -1.#J      -1.#J      -1.#J      -1.#J
+  14     0       19.0      -1.#J      -1.#J      -1.#J      -1.#J
+
+	Distribution Summary
+
+Distribution:	Empirical    
+Expression:	CONT or DISC (0.000,  4.500,
+                              -1.#IO,  5.500,
+                              -1.#IO,  6.500,
+                              -1.#IO,  7.500,
+                              -1.#IO,  8.500,
+                              -1.#IO,  9.500,
+                              -1.#IO, 10.500,
+                              -1.#IO, 11.500,
+                              -1.#IO, 12.500,
+                              -1.#IO, 13.500,
+                              -1.#IO, 14.500,
+                              -1.#IO, 15.500,
+                              -1.#IO, 16.500,
+                              -1.#IO, 17.500,
+                              -1.#IO, 18.500,
+                              -1.#IO, 19.500)
+
+
+	Data Summary
+
+Number of Data Points	= 0
+Min Data Value       	= 1e+038
+Max Data Value       	= -1e+038
+Sample Mean          	= -1.#J
+Sample Std Dev       	= -1.#J
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 19.5
+Number of Intervals	= 15
+
+
+	Distribution Summary
+
+Distribution:	Erlang       
+Expression:	4.5 + ERLA(-1.#J, 1)
+Square Error:	1.#QNAN0
+
+
+	Data Summary
+
+Number of Data Points	= 0
+Min Data Value       	= 1e+038
+Max Data Value       	= -1e+038
+Sample Mean          	= -1.#J
+Sample Std Dev       	= -1.#J
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 19.5
+Number of Intervals	= 15
+
+
+==================================================================
+Int.   No. of               Probability           Cumulative      
+No.    Data Pts.   x        Density               Distribution    
+------------------------------------------------------------------
+                            Data   Function       Data   Function   
+   0     0       5.00      -1.#J       1.#R      -1.#J       1.#R
+   1     0       6.00      -1.#J       1.#R      -1.#J       1.#R
+   2     0       7.00      -1.#J       1.#R      -1.#J       1.#R
+   3     0       8.00      -1.#J       1.#R      -1.#J       1.#R
+   4     0       9.00      -1.#J       1.#R      -1.#J       1.#R
+   5     0       10.0      -1.#J       1.#R      -1.#J       1.#R
+   6     0       11.0      -1.#J       1.#R      -1.#J       1.#R
+   7     0       12.0      -1.#J       1.#R      -1.#J       1.#R
+   8     0       13.0      -1.#J       1.#R      -1.#J       1.#R
+   9     0       14.0      -1.#J       1.#R      -1.#J       1.#R
+  10     0       15.0      -1.#J       1.#R      -1.#J       1.#R
+  11     0       16.0      -1.#J       1.#R      -1.#J       1.#R
+  12     0       17.0      -1.#J       1.#R      -1.#J       1.#R
+  13     0       18.0      -1.#J       1.#R      -1.#J       1.#R
+  14     0       19.0      -1.#J       1.#R      -1.#J       1.#R
