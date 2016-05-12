@@ -4,10 +4,14 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.entities.Vehicle;
 
+import java.util.List;
+
 public class MyMessage extends MessageForm {
 
     private double amount;
     private Vehicle vehicle;
+    private String target;
+    private List<Vehicle> allVehicles;
 
     public MyMessage(Simulation sim) {
         super(sim);
@@ -29,6 +33,7 @@ public class MyMessage extends MessageForm {
         MyMessage original = (MyMessage) message;
         vehicle = original.vehicle;
         amount = original.amount;
+        target = original.target;
     }
 
     public double getAmount() {
@@ -45,5 +50,21 @@ public class MyMessage extends MessageForm {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public List<Vehicle> getAllVehicles() {
+        return allVehicles;
+    }
+
+    public void setAllVehicles(List<Vehicle> allVehicles) {
+        this.allVehicles = allVehicles;
     }
 }

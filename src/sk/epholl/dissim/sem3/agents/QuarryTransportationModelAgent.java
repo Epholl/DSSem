@@ -6,6 +6,7 @@ import sk.epholl.dissim.sem3.managers.QuarryTransportationModelManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
+import sk.epholl.dissim.sem3.simulation.SimulationParameters;
 
 //meta! id="3"
 public class QuarryTransportationModelAgent extends Agent {
@@ -22,6 +23,13 @@ public class QuarryTransportationModelAgent extends Agent {
         MyMessage message = new MyMessage(mySim());
         message.setCode(Mc.init);
         message.setAddressee(Id.surroundingsAgent);
+        manager().notice(message);
+
+        SimulationParameters params = SimulationParameters.getDefaultParameters(mySim());
+        message = new MyMessage(mySim());
+        message.setCode(Mc.init);
+        message.setAddressee(Id.loaderAgent);
+        message.setAllVehicles(params.availableVehicles);
         manager().notice(message);
     }
 

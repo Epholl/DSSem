@@ -2,6 +2,8 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
+import OSPDataStruct.SimQueue;
+import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.managers.LoaderManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
@@ -9,7 +11,9 @@ import sk.epholl.dissim.sem3.simulation.Mc;
 //meta! id="5"
 public class LoaderAgent extends Agent {
 
-    public double currentStorageCargo = 3500D;
+    private double currentStorageCargo = 3500D;
+
+    private SimQueue<Vehicle> loaderQueue = new SimQueue<>();
 
     public LoaderAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
@@ -34,6 +38,10 @@ public class LoaderAgent extends Agent {
         amount = Math.min(0d, amount);
         currentStorageCargo -= amount;
         return amount;
+    }
+
+    public SimQueue<Vehicle> getQueue() {
+        return loaderQueue;
     }
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
