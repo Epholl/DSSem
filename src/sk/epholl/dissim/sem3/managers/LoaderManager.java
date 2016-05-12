@@ -6,6 +6,8 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.LoaderAgent;
 import sk.epholl.dissim.sem3.entities.Loader;
+import sk.epholl.dissim.sem3.entities.Vehicle;
+import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
 
@@ -56,11 +58,18 @@ public class LoaderManager extends Manager {
 
 	//meta! sender="QuarryTransportationModelAgent", id="15", type="Notice"
 	public void processInit(MessageForm message) {
-		MyMessage msg = (MyMessage) message;
+        List<Vehicle> vehicles = ((MyMessage) message).getAllVehicles();
+        for (Vehicle vehicle: vehicles) {
+            MyMessage msg = new MyMessage(mySim());
+            msg.setVehicle(vehicle);
+            msg.setCode(Mc.loadVehicle);
+            processLoadVehicle(msg);
+        }
     }
 
 	//meta! sender="QuarryTransportationModelAgent", id="17", type="Request"
 	public void processLoadVehicle(MessageForm message) {
+        if (myAgent().)
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"
@@ -75,6 +84,20 @@ public class LoaderManager extends Manager {
 		myAgent().addToCargo(msg.getAmount());
     }
 
+	//meta! sender="Loader2Process", id="55", type="Finish"
+	public void processFinishLoader2Process(MessageForm message) {
+	}
+
+	//meta! sender="Loader1Process", id="53", type="Finish"
+	public void processFinishLoader1Process(MessageForm message) {
+	}
+
+
+
+	//meta! sender="LoaderOpenScheduler", id="68", type="Finish"
+	public void processFinishLoaderOpenScheduler(MessageForm message) {
+	}
+
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public void init() {
 	}
@@ -84,6 +107,22 @@ public class LoaderManager extends Manager {
 		switch (message.code()) {
 		case Mc.materialDelivered:
 			processMaterialDelivered(message);
+		break;
+
+		case Mc.finish:
+			switch (message.sender().id()) {
+			case Id.loader2Process:
+				processFinishLoader2Process(message);
+			break;
+
+			case Id.loader1Process:
+				processFinishLoader1Process(message);
+			break;
+
+			case Id.loaderOpenScheduler:
+				processFinishLoaderOpenScheduler(message);
+			break;
+			}
 		break;
 
 		case Mc.loadVehicle:

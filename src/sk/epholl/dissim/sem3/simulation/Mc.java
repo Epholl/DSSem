@@ -7,6 +7,7 @@ public class Mc extends IdList {
     public static final int supplierEnded = 1;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
+	public static final int unloadVehicle = 1010;
 	public static final int materialDelivered = 1001;
 	public static final int requestMaterialConsumption = 1002;
 	public static final int init = 1004;

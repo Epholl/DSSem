@@ -18,12 +18,6 @@
       <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
-        <Scheduler>
-          <SimId>1013</SimId>
-          <InternalId>69</InternalId>
-          <Name>Loader2OpenScheduler</Name>
-          <Bounds>162,103,35,13</Bounds>
-        </Scheduler>
         <Process>
           <SimId>1008</SimId>
           <InternalId>54</InternalId>
@@ -39,7 +33,7 @@
         <Scheduler>
           <SimId>1012</SimId>
           <InternalId>67</InternalId>
-          <Name>Loader1OpenScheduler</Name>
+          <Name>LoaderOpenScheduler</Name>
           <Bounds>161,71,35,13</Bounds>
         </Scheduler>
       </Components>
@@ -94,6 +88,12 @@
       <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
+        <Scheduler>
+          <SimId>1014</SimId>
+          <InternalId>72</InternalId>
+          <Name>UnloaderOpenScheduler</Name>
+          <Bounds>168,72,35,13</Bounds>
+        </Scheduler>
         <Process>
           <SimId>1009</SimId>
           <InternalId>58</InternalId>
@@ -133,12 +133,6 @@
       <Destination>67</Destination>
     </Message>
     <Message>
-      <InternalId>70</InternalId>
-      <Type>StartFinish</Type>
-      <Source>5</Source>
-      <Destination>69</Destination>
-    </Message>
-    <Message>
       <InternalId>7</InternalId>
       <Type>Parent</Type>
       <Source>2</Source>
@@ -155,6 +149,12 @@
       <Type>Parent</Type>
       <Source>5</Source>
       <Destination>3</Destination>
+    </Message>
+    <Message>
+      <InternalId>73</InternalId>
+      <Type>StartFinish</Type>
+      <Source>6</Source>
+      <Destination>72</Destination>
     </Message>
     <Message>
       <InternalId>10</InternalId>
@@ -281,5 +281,5 @@
       <Destination>62</Destination>
     </Message>
   </Messages>
-  <IID>71</IID>
+  <IID>79</IID>
 </ABAsim>

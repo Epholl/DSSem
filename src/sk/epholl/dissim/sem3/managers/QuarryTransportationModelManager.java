@@ -53,6 +53,10 @@ public class QuarryTransportationModelManager extends Manager {
         }
     }
 
+	//meta! sender="UnloaderAgent", id="65", type="Response"
+	public void processUnloadVehicle(MessageForm message) {
+	}
+
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public void init() {
 	}
@@ -62,6 +66,18 @@ public class QuarryTransportationModelManager extends Manager {
 		switch (message.code()) {
 		case Mc.transferVehicle:
 			processTransferVehicle(message);
+		break;
+
+		case Mc.unloadVehicle:
+			processUnloadVehicle(message);
+		break;
+
+		case Mc.materialDelivered:
+			processMaterialDelivered(message);
+		break;
+
+		case Mc.loadVehicle:
+			processLoadVehicle(message);
 		break;
 
 		case Mc.requestMaterialConsumption:
@@ -74,14 +90,6 @@ public class QuarryTransportationModelManager extends Manager {
 				processRequestMaterialConsumptionSurroundingsAgent(message);
 			break;
 			}
-		break;
-
-		case Mc.materialDelivered:
-			processMaterialDelivered(message);
-		break;
-
-		case Mc.loadVehicle:
-			processLoadVehicle(message);
 		break;
 
 		default:

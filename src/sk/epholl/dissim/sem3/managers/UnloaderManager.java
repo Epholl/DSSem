@@ -34,6 +34,22 @@ public class UnloaderManager extends Manager {
         }
     }
 
+	//meta! sender="QuarryTransportationModelAgent", id="65", type="Request"
+	public void processUnloadVehicle(MessageForm message) {
+	}
+
+	//meta! sender="UnloaderOpenScheduler", id="73", type="Finish"
+	public void processFinishUnloaderOpenScheduler(MessageForm message) {
+	}
+
+	//meta! sender="Unloader1Process", id="59", type="Finish"
+	public void processFinishUnloader1Process(MessageForm message) {
+	}
+
+	//meta! sender="Unloader2Process", id="63", type="Finish"
+	public void processFinishUnloader2Process(MessageForm message) {
+	}
+
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public void init() {
 	}
@@ -43,6 +59,26 @@ public class UnloaderManager extends Manager {
 		switch (message.code()) {
 		case Mc.requestMaterialConsumption:
 			processRequestMaterialConsumption(message);
+		break;
+
+		case Mc.finish:
+			switch (message.sender().id()) {
+			case Id.unloaderOpenScheduler:
+				processFinishUnloaderOpenScheduler(message);
+			break;
+
+			case Id.unloader1Process:
+				processFinishUnloader1Process(message);
+			break;
+
+			case Id.unloader2Process:
+				processFinishUnloader2Process(message);
+			break;
+			}
+		break;
+
+		case Mc.unloadVehicle:
+			processUnloadVehicle(message);
 		break;
 
 		default:

@@ -31,6 +31,11 @@ public class QuarryTransportationModelAgent extends Agent {
         message.setAddressee(Id.loaderAgent);
         message.setAllVehicles(params.availableVehicles);
         manager().notice(message);
+
+        message = new MyMessage(mySim());
+        message.setCode(Mc.init);
+        message.setAddressee(Id.unloaderAgent);
+        manager().notice(message);
     }
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
@@ -38,6 +43,7 @@ public class QuarryTransportationModelAgent extends Agent {
 		new QuarryTransportationModelManager(Id.quarryTransportationModelManager, mySim(), this);
 		addOwnMessage(Mc.materialDelivered);
 		addOwnMessage(Mc.loadVehicle);
+		addOwnMessage(Mc.unloadVehicle);
 		addOwnMessage(Mc.transferVehicle);
 		addOwnMessage(Mc.requestMaterialConsumption);
 	}
