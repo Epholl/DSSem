@@ -40,6 +40,18 @@ public class LoaderAgent extends Agent {
         return amount;
     }
 
+    public boolean hasWaitingVehicles() {
+        return !loaderQueue.isEmpty();
+    }
+
+    public void enqueueVehicle(Vehicle vehicle) {
+        loaderQueue.addLast(vehicle);
+    }
+
+    public Vehicle dequeueVehicle() {
+        return loaderQueue.removeFirst();
+    }
+
     public SimQueue<Vehicle> getQueue() {
         return loaderQueue;
     }

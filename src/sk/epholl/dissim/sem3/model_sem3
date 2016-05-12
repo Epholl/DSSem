@@ -18,6 +18,12 @@
       <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
+        <Scheduler>
+          <SimId>1013</SimId>
+          <InternalId>69</InternalId>
+          <Name>Loader2OpenScheduler</Name>
+          <Bounds>162,103,35,13</Bounds>
+        </Scheduler>
         <Process>
           <SimId>1008</SimId>
           <InternalId>54</InternalId>
@@ -30,6 +36,12 @@
           <Name>Loader1Process</Name>
           <Bounds>21,72,35,18</Bounds>
         </Process>
+        <Scheduler>
+          <SimId>1012</SimId>
+          <InternalId>67</InternalId>
+          <Name>Loader1OpenScheduler</Name>
+          <Bounds>161,71,35,13</Bounds>
+        </Scheduler>
       </Components>
     </Agent>
     <Agent>
@@ -79,7 +91,22 @@
       <Name>UnloaderAgent</Name>
       <Bounds>1807,796,230,230</Bounds>
       <Reasoner>UnloaderManager</Reasoner>
+      <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Process>
+          <SimId>1009</SimId>
+          <InternalId>58</InternalId>
+          <Name>Unloader1Process</Name>
+          <Bounds>22,74,35,18</Bounds>
+        </Process>
+        <Process>
+          <SimId>1011</SimId>
+          <InternalId>62</InternalId>
+          <Name>Unloader2Process</Name>
+          <Bounds>22,107,35,18</Bounds>
+        </Process>
+      </Components>
     </Agent>
     <Agent>
       <SimId>2</SimId>
@@ -92,10 +119,24 @@
   </Agents>
   <Messages>
     <Message>
-      <InternalId>33</InternalId>
+      <SimId>1010</SimId>
+      <InternalId>65</InternalId>
+      <Name>unloadVehicle</Name>
+      <Type>RequestResponse</Type>
+      <Source>3</Source>
+      <Destination>6</Destination>
+    </Message>
+    <Message>
+      <InternalId>68</InternalId>
       <Type>StartFinish</Type>
-      <Source>2</Source>
-      <Destination>32</Destination>
+      <Source>5</Source>
+      <Destination>67</Destination>
+    </Message>
+    <Message>
+      <InternalId>70</InternalId>
+      <Type>StartFinish</Type>
+      <Source>5</Source>
+      <Destination>69</Destination>
     </Message>
     <Message>
       <InternalId>7</InternalId>
@@ -128,12 +169,6 @@
       <Type>Notice</Type>
       <Source>2</Source>
       <Destination>3</Destination>
-    </Message>
-    <Message>
-      <InternalId>43</InternalId>
-      <Type>StartFinish</Type>
-      <Source>2</Source>
-      <Destination>42</Destination>
     </Message>
     <Message>
       <SimId>1002</SimId>
@@ -184,22 +219,10 @@
       <Destination>5</Destination>
     </Message>
     <Message>
-      <InternalId>53</InternalId>
-      <Type>StartFinish</Type>
-      <Source>5</Source>
-      <Destination>52</Destination>
-    </Message>
-    <Message>
       <InternalId>22</InternalId>
       <Type>StartFinish</Type>
       <Source>2</Source>
       <Destination>21</Destination>
-    </Message>
-    <Message>
-      <InternalId>55</InternalId>
-      <Type>StartFinish</Type>
-      <Source>5</Source>
-      <Destination>54</Destination>
     </Message>
     <Message>
       <InternalId>24</InternalId>
@@ -221,6 +244,42 @@
       <Source>3</Source>
       <Destination>5</Destination>
     </Message>
+    <Message>
+      <InternalId>33</InternalId>
+      <Type>StartFinish</Type>
+      <Source>2</Source>
+      <Destination>32</Destination>
+    </Message>
+    <Message>
+      <InternalId>43</InternalId>
+      <Type>StartFinish</Type>
+      <Source>2</Source>
+      <Destination>42</Destination>
+    </Message>
+    <Message>
+      <InternalId>53</InternalId>
+      <Type>StartFinish</Type>
+      <Source>5</Source>
+      <Destination>52</Destination>
+    </Message>
+    <Message>
+      <InternalId>55</InternalId>
+      <Type>StartFinish</Type>
+      <Source>5</Source>
+      <Destination>54</Destination>
+    </Message>
+    <Message>
+      <InternalId>59</InternalId>
+      <Type>StartFinish</Type>
+      <Source>6</Source>
+      <Destination>58</Destination>
+    </Message>
+    <Message>
+      <InternalId>63</InternalId>
+      <Type>StartFinish</Type>
+      <Source>6</Source>
+      <Destination>62</Destination>
+    </Message>
   </Messages>
-  <IID>56</IID>
+  <IID>71</IID>
 </ABAsim>
