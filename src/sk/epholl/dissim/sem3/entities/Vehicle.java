@@ -18,6 +18,8 @@ public class Vehicle extends Entity {
     public static final String STATE_LOADING = "loading";
     public static final String STATE_UNLOADING = "unloading";
 
+    public static final String DEFAULT_START_LOCATION = "A";
+
     private double capacity;
     private double speed;
     private double breakdownProbability;
@@ -28,6 +30,7 @@ public class Vehicle extends Entity {
 
     private int finishedLoadsCount = 0;
     private String state = STATE_IDLE;
+    private String location = DEFAULT_START_LOCATION;
 
     private RandomGenerator<Double> breakdownGenerator;
 
@@ -83,6 +86,14 @@ public class Vehicle extends Entity {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public double unload() {

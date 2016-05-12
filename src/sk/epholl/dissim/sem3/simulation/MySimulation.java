@@ -40,67 +40,61 @@ public class MySimulation extends Simulation {
         super.simulationFinished();
     }
 
+    public LocalDateTime getSimStartTime() {
+        return startDateTime;
+    }
+
     public LocalDateTime getSimTimeNiceFormat() {
         return startDateTime.plusSeconds((long) currentTime());
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    private void init() {
-        setQuarryTransportationModelAgent(new QuarryTransportationModelAgent(Id.quarryTransportationModelAgent, this, null));
-        setTransportationAgent(new TransportationAgent(Id.transportationAgent, this, quarryTransportationModelAgent()));
-        setLoaderAgent(new LoaderAgent(Id.loaderAgent, this, quarryTransportationModelAgent()));
-        setUnloaderAgent(new UnloaderAgent(Id.unloaderAgent, this, quarryTransportationModelAgent()));
-        setSurroundingsAgent(new SurroundingsAgent(Id.surroundingsAgent, this, quarryTransportationModelAgent()));
-    }
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	private void init() {
+		setQuarryTransportationModelAgent(new QuarryTransportationModelAgent(Id.quarryTransportationModelAgent, this, null));
+		setTransportationAgent(new TransportationAgent(Id.transportationAgent, this, quarryTransportationModelAgent()));
+		setLoaderAgent(new LoaderAgent(Id.loaderAgent, this, quarryTransportationModelAgent()));
+		setUnloaderAgent(new UnloaderAgent(Id.unloaderAgent, this, quarryTransportationModelAgent()));
+		setSurroundingsAgent(new SurroundingsAgent(Id.surroundingsAgent, this, quarryTransportationModelAgent()));
+	}
 
-    private QuarryTransportationModelAgent _quarryTransportationModelAgent;
+	private QuarryTransportationModelAgent _quarryTransportationModelAgent;
 
-    public QuarryTransportationModelAgent quarryTransportationModelAgent() {
-        return _quarryTransportationModelAgent;
-    }
+public QuarryTransportationModelAgent quarryTransportationModelAgent()
+	{ return _quarryTransportationModelAgent; }
 
-    public void setQuarryTransportationModelAgent(QuarryTransportationModelAgent quarryTransportationModelAgent) {
-        _quarryTransportationModelAgent = quarryTransportationModelAgent;
-    }
+	public void setQuarryTransportationModelAgent(QuarryTransportationModelAgent quarryTransportationModelAgent)
+	{_quarryTransportationModelAgent = quarryTransportationModelAgent; }
 
-    private TransportationAgent _transportationAgent;
+	private TransportationAgent _transportationAgent;
 
-    public TransportationAgent transportationAgent() {
-        return _transportationAgent;
-    }
+public TransportationAgent transportationAgent()
+	{ return _transportationAgent; }
 
-    public void setTransportationAgent(TransportationAgent transportationAgent) {
-        _transportationAgent = transportationAgent;
-    }
+	public void setTransportationAgent(TransportationAgent transportationAgent)
+	{_transportationAgent = transportationAgent; }
 
-    private LoaderAgent _loaderAgent;
+	private LoaderAgent _loaderAgent;
 
-    public LoaderAgent loaderAgent() {
-        return _loaderAgent;
-    }
+public LoaderAgent loaderAgent()
+	{ return _loaderAgent; }
 
-    public void setLoaderAgent(LoaderAgent loaderAgent) {
-        _loaderAgent = loaderAgent;
-    }
+	public void setLoaderAgent(LoaderAgent loaderAgent)
+	{_loaderAgent = loaderAgent; }
 
-    private UnloaderAgent _unloaderAgent;
+	private UnloaderAgent _unloaderAgent;
 
-    public UnloaderAgent unloaderAgent() {
-        return _unloaderAgent;
-    }
+public UnloaderAgent unloaderAgent()
+	{ return _unloaderAgent; }
 
-    public void setUnloaderAgent(UnloaderAgent unloaderAgent) {
-        _unloaderAgent = unloaderAgent;
-    }
+	public void setUnloaderAgent(UnloaderAgent unloaderAgent)
+	{_unloaderAgent = unloaderAgent; }
 
-    private SurroundingsAgent _surroundingsAgent;
+	private SurroundingsAgent _surroundingsAgent;
 
-    public SurroundingsAgent surroundingsAgent() {
-        return _surroundingsAgent;
-    }
+public SurroundingsAgent surroundingsAgent()
+	{ return _surroundingsAgent; }
 
-    public void setSurroundingsAgent(SurroundingsAgent surroundingsAgent) {
-        _surroundingsAgent = surroundingsAgent;
-    }
-    //meta! tag="end"
+	public void setSurroundingsAgent(SurroundingsAgent surroundingsAgent)
+	{_surroundingsAgent = surroundingsAgent; }
+	//meta! tag="end"
 }

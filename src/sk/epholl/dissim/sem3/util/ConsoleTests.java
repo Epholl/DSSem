@@ -9,7 +9,7 @@ public class ConsoleTests {
 
     public static void main(String[] args) {
         MySimulation sim = new MySimulation();
-        sim.simulate(1);
+        sim.simulate(1, 10000000L);
         System.out.println(sim.getSimTimeNiceFormat());
     }
 }

@@ -25,81 +25,71 @@ public class QuarryTransportationModelManager extends Manager {
         }
     }
 
-    //meta! sender="SurroundingsAgent", id="11", type="Notice"
-    public void processMaterialDelivered(MessageForm message) {
+	//meta! sender="SurroundingsAgent", id="11", type="Notice"
+	public void processMaterialDelivered(MessageForm message) {
+		message.setAddressee(Id.loaderAgent);
+		notice(message);
     }
 
-    //meta! sender="LoaderAgent", id="17", type="Response"
-    public void processLoadVehicle(MessageForm message) {
+	//meta! sender="LoaderAgent", id="17", type="Response"
+	public void processLoadVehicle(MessageForm message) {
     }
 
-    //meta! sender="TransportationAgent", id="16", type="Response"
-    public void processTransferVehicle(MessageForm message) {
+	//meta! sender="TransportationAgent", id="16", type="Response"
+	public void processTransferVehicle(MessageForm message) {
     }
 
-    //meta! sender="UnloaderAgent", id="13", type="Response"
-    public void processRequestMaterialConsumptionUnloaderAgent(MessageForm message) {
+	//meta! sender="UnloaderAgent", id="13", type="Response"
+	public void processRequestMaterialConsumptionUnloaderAgent(MessageForm message) {
     }
 
-    //meta! sender="SurroundingsAgent", id="12", type="Request"
-    public void processRequestMaterialConsumptionSurroundingsAgent(MessageForm message) {
+	//meta! sender="SurroundingsAgent", id="12", type="Request"
+	public void processRequestMaterialConsumptionSurroundingsAgent(MessageForm message) {
     }
 
-    //meta! userInfo="Process messages defined in code", id="0"
-    public void processDefault(MessageForm message) {
+	//meta! userInfo="Process messages defined in code", id="0"
+	public void processDefault(MessageForm message) {
         switch (message.code()) {
         }
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    public void init() {
-    }
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	public void init() {
+	}
 
-    @Override
-    public void processMessage(MessageForm message) {
-        switch (message.code()) {
+	@Override
+	public void processMessage(MessageForm message) {
+		switch (message.code()) {
+		case Mc.transferVehicle:
+			processTransferVehicle(message);
+		break;
 
-            case Mc.init:
-                message.setAddressee(Id.surroundingsAgent);
-                message.setCode(Mc.init);
+		case Mc.requestMaterialConsumption:
+			switch (message.sender().id()) {
+			case Id.unloaderAgent:
+				processRequestMaterialConsumptionUnloaderAgent(message);
+			break;
 
-                MessageForm copy = message.createCopy();
-                copy.setAddressee(Id.loaderAgent);
+			case Id.surroundingsAgent:
+				processRequestMaterialConsumptionSurroundingsAgent(message);
+			break;
+			}
+		break;
 
-                notice(message);
-                notice(copy);
-                break;
+		case Mc.materialDelivered:
+			processMaterialDelivered(message);
+		break;
 
-            case Mc.transferVehicle:
-                processTransferVehicle(message);
-                break;
+		case Mc.loadVehicle:
+			processLoadVehicle(message);
+		break;
 
-            case Mc.requestMaterialConsumption:
-                switch (message.sender().id()) {
-                    case Id.unloaderAgent:
-                        processRequestMaterialConsumptionUnloaderAgent(message);
-                        break;
-
-                    case Id.surroundingsAgent:
-                        processRequestMaterialConsumptionSurroundingsAgent(message);
-                        break;
-                }
-                break;
-
-            case Mc.materialDelivered:
-                processMaterialDelivered(message);
-                break;
-
-            case Mc.loadVehicle:
-                processLoadVehicle(message);
-                break;
-
-            default:
-                processDefault(message);
-                break;
-        }
-    }
-    //meta! tag="end"
+		default:
+			processDefault(message);
+		break;
+		}
+	}
+	//meta! tag="end"
 
     @Override
     public QuarryTransportationModelAgent myAgent() {

@@ -19,10 +19,10 @@ public class UnloaderAgent extends Agent {
         // Setup component for the next replication
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    private void init() {
-        new UnloaderManager(Id.unloaderManager, mySim(), this);
-        addOwnMessage(Mc.requestMaterialConsumption);
-    }
-    //meta! tag="end"
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	private void init() {
+		new UnloaderManager(Id.unloaderManager, mySim(), this);
+		addOwnMessage(Mc.requestMaterialConsumption);
+	}
+	//meta! tag="end"
 }

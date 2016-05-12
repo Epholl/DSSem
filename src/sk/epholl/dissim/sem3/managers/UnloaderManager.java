@@ -24,33 +24,33 @@ public class UnloaderManager extends Manager {
         }
     }
 
-    //meta! sender="QuarryTransportationModelAgent", id="13", type="Request"
-    public void processRequestMaterialConsumption(MessageForm message) {
+	//meta! sender="QuarryTransportationModelAgent", id="13", type="Request"
+	public void processRequestMaterialConsumption(MessageForm message) {
     }
 
-    //meta! userInfo="Process messages defined in code", id="0"
-    public void processDefault(MessageForm message) {
+	//meta! userInfo="Process messages defined in code", id="0"
+	public void processDefault(MessageForm message) {
         switch (message.code()) {
         }
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    public void init() {
-    }
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	public void init() {
+	}
 
-    @Override
-    public void processMessage(MessageForm message) {
-        switch (message.code()) {
-            case Mc.requestMaterialConsumption:
-                processRequestMaterialConsumption(message);
-                break;
+	@Override
+	public void processMessage(MessageForm message) {
+		switch (message.code()) {
+		case Mc.requestMaterialConsumption:
+			processRequestMaterialConsumption(message);
+		break;
 
-            default:
-                processDefault(message);
-                break;
-        }
-    }
-    //meta! tag="end"
+		default:
+			processDefault(message);
+		break;
+		}
+	}
+	//meta! tag="end"
 
     @Override
     public UnloaderAgent myAgent() {

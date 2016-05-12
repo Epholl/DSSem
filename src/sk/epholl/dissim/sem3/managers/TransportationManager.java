@@ -24,33 +24,33 @@ public class TransportationManager extends Manager {
         }
     }
 
-    //meta! sender="QuarryTransportationModelAgent", id="16", type="Request"
-    public void processTransferVehicle(MessageForm message) {
+	//meta! sender="QuarryTransportationModelAgent", id="16", type="Request"
+	public void processTransferVehicle(MessageForm message) {
     }
 
-    //meta! userInfo="Process messages defined in code", id="0"
-    public void processDefault(MessageForm message) {
+	//meta! userInfo="Process messages defined in code", id="0"
+	public void processDefault(MessageForm message) {
         switch (message.code()) {
         }
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    public void init() {
-    }
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	public void init() {
+	}
 
-    @Override
-    public void processMessage(MessageForm message) {
-        switch (message.code()) {
-            case Mc.transferVehicle:
-                processTransferVehicle(message);
-                break;
+	@Override
+	public void processMessage(MessageForm message) {
+		switch (message.code()) {
+		case Mc.transferVehicle:
+			processTransferVehicle(message);
+		break;
 
-            default:
-                processDefault(message);
-                break;
-        }
-    }
-    //meta! tag="end"
+		default:
+			processDefault(message);
+		break;
+		}
+	}
+	//meta! tag="end"
 
     @Override
     public TransportationAgent myAgent() {

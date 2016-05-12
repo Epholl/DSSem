@@ -19,10 +19,10 @@ public class TransportationAgent extends Agent {
         // Setup component for the next replication
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    private void init() {
-        new TransportationManager(Id.transportationManager, mySim(), this);
-        addOwnMessage(Mc.transferVehicle);
-    }
-    //meta! tag="end"
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	private void init() {
+		new TransportationManager(Id.transportationManager, mySim(), this);
+		addOwnMessage(Mc.transferVehicle);
+	}
+	//meta! tag="end"
 }

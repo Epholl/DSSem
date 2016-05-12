@@ -15,7 +15,22 @@
       <Name>LoaderAgent</Name>
       <Bounds>1160,800,230,230</Bounds>
       <Reasoner>LoaderManager</Reasoner>
+      <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Process>
+          <SimId>1008</SimId>
+          <InternalId>54</InternalId>
+          <Name>Loader2Process</Name>
+          <Bounds>21,103,35,18</Bounds>
+        </Process>
+        <Process>
+          <SimId>1007</SimId>
+          <InternalId>52</InternalId>
+          <Name>Loader1Process</Name>
+          <Bounds>21,72,35,18</Bounds>
+        </Process>
+      </Components>
     </Agent>
     <Agent>
       <SimId>1</SimId>
@@ -26,6 +41,18 @@
       <ReasonerBounds>99,32,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
+        <Process>
+          <SimId>1006</SimId>
+          <InternalId>42</InternalId>
+          <Name>SupplierAActiveProcess</Name>
+          <Bounds>150,73,35,18</Bounds>
+        </Process>
+        <Scheduler>
+          <SimId>1004</SimId>
+          <InternalId>32</InternalId>
+          <Name>MaterialConsumedScheduler</Name>
+          <Bounds>97,136,35,13</Bounds>
+        </Scheduler>
         <Scheduler>
           <SimId>1002</SimId>
           <InternalId>23</InternalId>
@@ -65,6 +92,12 @@
   </Agents>
   <Messages>
     <Message>
+      <InternalId>33</InternalId>
+      <Type>StartFinish</Type>
+      <Source>2</Source>
+      <Destination>32</Destination>
+    </Message>
+    <Message>
       <InternalId>7</InternalId>
       <Type>Parent</Type>
       <Source>2</Source>
@@ -95,6 +128,12 @@
       <Type>Notice</Type>
       <Source>2</Source>
       <Destination>3</Destination>
+    </Message>
+    <Message>
+      <InternalId>43</InternalId>
+      <Type>StartFinish</Type>
+      <Source>2</Source>
+      <Destination>42</Destination>
     </Message>
     <Message>
       <SimId>1002</SimId>
@@ -145,10 +184,22 @@
       <Destination>5</Destination>
     </Message>
     <Message>
+      <InternalId>53</InternalId>
+      <Type>StartFinish</Type>
+      <Source>5</Source>
+      <Destination>52</Destination>
+    </Message>
+    <Message>
       <InternalId>22</InternalId>
       <Type>StartFinish</Type>
       <Source>2</Source>
       <Destination>21</Destination>
+    </Message>
+    <Message>
+      <InternalId>55</InternalId>
+      <Type>StartFinish</Type>
+      <Source>5</Source>
+      <Destination>54</Destination>
     </Message>
     <Message>
       <InternalId>24</InternalId>
@@ -162,6 +213,14 @@
       <Source>2</Source>
       <Destination>25</Destination>
     </Message>
+    <Message>
+      <SimId>1008</SimId>
+      <InternalId>30</InternalId>
+      <Name>materialDelivered</Name>
+      <Type>Notice</Type>
+      <Source>3</Source>
+      <Destination>5</Destination>
+    </Message>
   </Messages>
-  <IID>29</IID>
+  <IID>56</IID>
 </ABAsim>

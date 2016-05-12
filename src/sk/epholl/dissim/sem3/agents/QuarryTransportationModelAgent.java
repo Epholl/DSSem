@@ -25,13 +25,13 @@ public class QuarryTransportationModelAgent extends Agent {
         manager().notice(message);
     }
 
-    //meta! userInfo="Generated code: do not modify", tag="begin"
-    private void init() {
-        new QuarryTransportationModelManager(Id.quarryTransportationModelManager, mySim(), this);
-        addOwnMessage(Mc.materialDelivered);
-        addOwnMessage(Mc.loadVehicle);
-        addOwnMessage(Mc.transferVehicle);
-        addOwnMessage(Mc.requestMaterialConsumption);
-    }
-    //meta! tag="end"
+	//meta! userInfo="Generated code: do not modify", tag="begin"
+	private void init() {
+		new QuarryTransportationModelManager(Id.quarryTransportationModelManager, mySim(), this);
+		addOwnMessage(Mc.materialDelivered);
+		addOwnMessage(Mc.loadVehicle);
+		addOwnMessage(Mc.transferVehicle);
+		addOwnMessage(Mc.requestMaterialConsumption);
+	}
+	//meta! tag="end"
 }

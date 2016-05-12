@@ -31,6 +31,10 @@ public class InputParser {
         long lastTimeA, lastTimeB, lastTimeC;
         lastTimeA = lastTimeB = lastTimeC = -1;
 
+        int[] countsA = new int[25];
+        int[] countsB = new int[25];
+        int[] countsC = new int[25];
+
         while ((line = input.readLine()) != null) {
             if (firstLine) {
                 firstLine = false;
@@ -56,6 +60,7 @@ public class InputParser {
             switch (tokens[1]) {
                 case "A":
                     sumA += Long.parseLong(tokens[2]);
+                    countsA[Integer.parseInt(tokens[2])]++;
                     countA++;
                     if (lastTimeA != -1) {
                         streamTimeA.println((date - lastTimeA) / 60000);
@@ -65,6 +70,7 @@ public class InputParser {
                     break;
                 case "B":
                     sumB += Long.parseLong(tokens[2]);
+                    countsB[Integer.parseInt(tokens[2])]++;
                     countB++;
                     if (lastTimeB != -1) {
                         streamTimeB.println((date - lastTimeB) / 60000);
@@ -74,6 +80,7 @@ public class InputParser {
                     break;
                 case "C":
                     sumC += Long.parseLong(tokens[2]);
+                    countsC[Integer.parseInt(tokens[2])]++;
                     countC++;
                     if (lastTimeC != -1) {
                         streamTimeC.println((date - lastTimeC) / 60000);
@@ -87,10 +94,23 @@ public class InputParser {
         printInfo(sumA, countA);
         printInfo(sumB, countB);
         printInfo(sumC, countC);
+
+        printHistorgram(countsA);
+        printHistorgram(countsB);
+        printHistorgram(countsC);
     }
 
     public static void printInfo(long sum, long count) {
         System.out.println("Total sum: " + sum + ", number of lines: " + count);
         System.out.println("Average: " + String.format("%.3f", ((double) sum) / count));
+    }
+
+    public static void printHistorgram(int[] values) {
+        System.out.println("Printing a histogram...");
+        for (int i = 0; i < values.length; i++) {
+            System.out.println(i + ": " + values[i]);
+        }
+
+        System.out.println("Done.");
     }
 }

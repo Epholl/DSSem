@@ -1,33 +1,92 @@
+
+	Distribution Summary
+
+Distribution:	Beta         
+Expression:	4.5 + 12 * BETA(2.31, 1.18)
+Square Error:	0.000694
+
+Chi Square Test
+  Number of intervals	= 11
+  Degrees of freedom 	= 8
+  Test Statistic     	= 18.8
+  Corresponding p-value	= 0.0178
+
+	Data Summary
+
+Number of Data Points	= 2417
+Min Data Value       	= 5
+Max Data Value       	= 16
+Sample Mean          	= 12.4
+Sample Std Dev       	= 2.68
+
+	Histogram Summary
+
+Histogram Range    	= 4.5 to 16.5
+Number of Intervals	= 12
+
+
+==================================================================
+Int.   No. of               Probability           Cumulative      
+No.    Data Pts.   x        Density               Distribution    
+------------------------------------------------------------------
+                            Data   Function       Data   Function   
+   0     8       5.00    0.00331    0.00407    0.00331    0.00407
+   1    31       6.00     0.0128     0.0159     0.0161     0.0200
+   2    93       7.00     0.0385     0.0305     0.0546     0.0505
+   3   121       8.00     0.0501     0.0464      0.105     0.0969
+   4   151       9.00     0.0625     0.0631      0.167      0.160
+   5   180       10.0     0.0745     0.0801      0.242      0.240
+   6   232       11.0     0.0960     0.0968      0.338      0.337
+   7   258       12.0      0.107      0.113      0.444      0.450
+   8   316       13.0      0.131      0.127      0.575      0.576
+   9   360       14.0      0.149      0.138      0.724      0.714
+  10   387       15.0      0.160      0.143      0.884      0.858
+  11   280       16.0      0.116      0.127       1.00      0.985
 
 
 =================================================================
 
 
-Data File: C:\dev\Java\DSSem\outputAmountC.txt
+Data File: C:\dev\Java\DSSem\outputAmountA.txt
 
 
 Function       Sq Error
 -----------------------
+Beta           0.000694
+Triangular     0.00436
+Weibull        0.0111
+Normal         0.0117
+Poisson        0.0137
+Gamma          0.0207
+Erlang         0.0208
+Lognormal      0.0277
+Uniform        0.0292
+Exponential    0.074
 
 	Distribution Summary
 
-Distribution:	Beta         
-Expression:	4.5 + 15 * BETA(-1.#J, -1.#J)
-Square Error:	-1.#IND00
+Distribution:	Triangular   
+Expression:	TRIA(4.5, 15, 16.5)
+Square Error:	0.004364
 
+Chi Square Test
+  Number of intervals	= 12
+  Degrees of freedom 	= 10
+  Test Statistic     	= 192
+  Corresponding p-value	< 0.005
 
 	Data Summary
 
-Number of Data Points	= 0
-Min Data Value       	= 1e+038
-Max Data Value       	= -1e+038
-Sample Mean          	= -1.#J
-Sample Std Dev       	= -1.#J
+Number of Data Points	= 2417
+Min Data Value       	= 5
+Max Data Value       	= 16
+Sample Mean          	= 12.4
+Sample Std Dev       	= 2.68
 
 	Histogram Summary
 
-Histogram Range    	= 4.5 to 19.5
-Number of Intervals	= 15
+Histogram Range    	= 4.5 to 16.5
+Number of Intervals	= 12
 
 
 ==================================================================
@@ -35,95 +94,15 @@ Int.   No. of               Probability           Cumulative
 No.    Data Pts.   x        Density               Distribution    
 ------------------------------------------------------------------
                             Data   Function       Data   Function   
-   0     0       5.00      -1.#J      -1.#J      -1.#J      -1.#J
-   1     0       6.00      -1.#J      -1.#J      -1.#J      -1.#J
-   2     0       7.00      -1.#J      -1.#J      -1.#J      -1.#J
-   3     0       8.00      -1.#J      -1.#J      -1.#J      -1.#J
-   4     0       9.00      -1.#J      -1.#J      -1.#J      -1.#J
-   5     0       10.0      -1.#J      -1.#J      -1.#J      -1.#J
-   6     0       11.0      -1.#J      -1.#J      -1.#J      -1.#J
-   7     0       12.0      -1.#J      -1.#J      -1.#J      -1.#J
-   8     0       13.0      -1.#J      -1.#J      -1.#J      -1.#J
-   9     0       14.0      -1.#J      -1.#J      -1.#J      -1.#J
-  10     0       15.0      -1.#J      -1.#J      -1.#J      -1.#J
-  11     0       16.0      -1.#J      -1.#J      -1.#J      -1.#J
-  12     0       17.0      -1.#J      -1.#J      -1.#J      -1.#J
-  13     0       18.0      -1.#J      -1.#J      -1.#J      -1.#J
-  14     0       19.0      -1.#J      -1.#J      -1.#J      -1.#J
-
-	Distribution Summary
-
-Distribution:	Empirical    
-Expression:	CONT or DISC (0.000,  4.500,
-                              -1.#IO,  5.500,
-                              -1.#IO,  6.500,
-                              -1.#IO,  7.500,
-                              -1.#IO,  8.500,
-                              -1.#IO,  9.500,
-                              -1.#IO, 10.500,
-                              -1.#IO, 11.500,
-                              -1.#IO, 12.500,
-                              -1.#IO, 13.500,
-                              -1.#IO, 14.500,
-                              -1.#IO, 15.500,
-                              -1.#IO, 16.500,
-                              -1.#IO, 17.500,
-                              -1.#IO, 18.500,
-                              -1.#IO, 19.500)
-
-
-	Data Summary
-
-Number of Data Points	= 0
-Min Data Value       	= 1e+038
-Max Data Value       	= -1e+038
-Sample Mean          	= -1.#J
-Sample Std Dev       	= -1.#J
-
-	Histogram Summary
-
-Histogram Range    	= 4.5 to 19.5
-Number of Intervals	= 15
-
-
-	Distribution Summary
-
-Distribution:	Erlang       
-Expression:	4.5 + ERLA(-1.#J, 1)
-Square Error:	1.#QNAN0
-
-
-	Data Summary
-
-Number of Data Points	= 0
-Min Data Value       	= 1e+038
-Max Data Value       	= -1e+038
-Sample Mean          	= -1.#J
-Sample Std Dev       	= -1.#J
-
-	Histogram Summary
-
-Histogram Range    	= 4.5 to 19.5
-Number of Intervals	= 15
-
-
-==================================================================
-Int.   No. of               Probability           Cumulative      
-No.    Data Pts.   x        Density               Distribution    
-------------------------------------------------------------------
-                            Data   Function       Data   Function   
-   0     0       5.00      -1.#J       1.#R      -1.#J       1.#R
-   1     0       6.00      -1.#J       1.#R      -1.#J       1.#R
-   2     0       7.00      -1.#J       1.#R      -1.#J       1.#R
-   3     0       8.00      -1.#J       1.#R      -1.#J       1.#R
-   4     0       9.00      -1.#J       1.#R      -1.#J       1.#R
-   5     0       10.0      -1.#J       1.#R      -1.#J       1.#R
-   6     0       11.0      -1.#J       1.#R      -1.#J       1.#R
-   7     0       12.0      -1.#J       1.#R      -1.#J       1.#R
-   8     0       13.0      -1.#J       1.#R      -1.#J       1.#R
-   9     0       14.0      -1.#J       1.#R      -1.#J       1.#R
-  10     0       15.0      -1.#J       1.#R      -1.#J       1.#R
-  11     0       16.0      -1.#J       1.#R      -1.#J       1.#R
-  12     0       17.0      -1.#J       1.#R      -1.#J       1.#R
-  13     0       18.0      -1.#J       1.#R      -1.#J       1.#R
-  14     0       19.0      -1.#J       1.#R      -1.#J       1.#R
+   0     8       5.00    0.00331    0.00794    0.00331    0.00794
+   1    31       6.00     0.0128     0.0238     0.0161     0.0317
+   2    93       7.00     0.0385     0.0397     0.0546     0.0714
+   3   121       8.00     0.0501     0.0556      0.105      0.127
+   4   151       9.00     0.0625     0.0714      0.167      0.198
+   5   180       10.0     0.0745     0.0873      0.242      0.286
+   6   232       11.0     0.0960      0.103      0.338      0.389
+   7   258       12.0      0.107      0.119      0.444      0.508
+   8   316       13.0      0.131      0.135      0.575      0.643
+   9   360       14.0      0.149      0.151      0.724      0.794
+  10   387       15.0      0.160      0.151      0.884      0.944
+  11   280       16.0      0.116     0.0556       1.00       1.00
