@@ -34,6 +34,7 @@ public class MyMessage extends MessageForm {
         vehicle = original.vehicle;
         amount = original.amount;
         target = original.target;
+        allVehicles = original.allVehicles;
     }
 
     public double getAmount() {

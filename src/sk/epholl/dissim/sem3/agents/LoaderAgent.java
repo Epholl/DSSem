@@ -3,11 +3,14 @@ package sk.epholl.dissim.sem3.agents;
 import OSPABA.Agent;
 import OSPABA.Simulation;
 import OSPDataStruct.SimQueue;
+import sk.epholl.dissim.sem3.continualAssistants.Loader1Process;
+import sk.epholl.dissim.sem3.continualAssistants.Loader2Process;
+import sk.epholl.dissim.sem3.continualAssistants.LoaderOpenScheduler;
 import sk.epholl.dissim.sem3.entities.Loader;
-import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.managers.LoaderManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class LoaderAgent extends Agent {
 
     private double currentStorageCargo = 3500D;
 
-    private SimQueue<Vehicle> loaderQueue = new SimQueue<>();
+    private SimQueue<MyMessage> loaderQueue = new SimQueue<>();
 
     public List<Loader> loaders = new ArrayList<>();
 
@@ -50,27 +53,35 @@ public class LoaderAgent extends Agent {
     }
 
     public boolean hasLoadingCapacityOpen() {
+        return getFreeLoader() != null;
+    }
+
+    public Loader getFreeLoader() {
         for (Loader loader: loaders) {
             if (loader.isOpen() && loader.canAccept()) {
-                return true;
+                return loader;
             }
         }
-        return false;
+        return null;
+    }
+
+    public Loader getLoader(int index) {
+        return loaders.get(index);
     }
 
     public boolean hasEnqueuedVehicles() {
         return !loaderQueue.isEmpty();
     }
 
-    public void enqueueVehicle(Vehicle vehicle) {
-        loaderQueue.addLast(vehicle);
+    public void enqueueVehicle(MyMessage message) {
+        loaderQueue.addLast(message);
     }
 
-    public Vehicle dequeueVehicle() {
+    public MyMessage dequeueVehicle() {
         return loaderQueue.removeFirst();
     }
 
-    public SimQueue<Vehicle> getQueue() {
+    public SimQueue<MyMessage> getQueue() {
         return loaderQueue;
     }
 
@@ -78,7 +89,7 @@ public class LoaderAgent extends Agent {
 	private void init() {
 		new LoaderManager(Id.loaderManager, mySim(), this);
 		new Loader2Process(Id.loader2Process, mySim(), this);
-		new Loader1Process(Id.loader1Process, mySim(), this);
+        new Loader1Process(Id.loader1Process, mySim(), this);
 		new LoaderOpenScheduler(Id.loaderOpenScheduler, mySim(), this);
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.materialDelivered);

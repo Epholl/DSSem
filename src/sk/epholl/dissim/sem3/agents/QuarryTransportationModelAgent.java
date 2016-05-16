@@ -2,6 +2,7 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.managers.QuarryTransportationModelManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
@@ -20,22 +21,30 @@ public class QuarryTransportationModelAgent extends Agent {
         super.prepareReplication();
         // Setup component for the next replication
 
+        SimulationParameters params = SimulationParameters.getDefaultParameters(mySim());
+
         MyMessage message = new MyMessage(mySim());
         message.setCode(Mc.init);
         message.setAddressee(Id.surroundingsAgent);
         manager().notice(message);
 
-        SimulationParameters params = SimulationParameters.getDefaultParameters(mySim());
         message = new MyMessage(mySim());
         message.setCode(Mc.init);
         message.setAddressee(Id.loaderAgent);
-        message.setAllVehicles(params.availableVehicles);
         manager().notice(message);
 
         message = new MyMessage(mySim());
         message.setCode(Mc.init);
         message.setAddressee(Id.unloaderAgent);
         manager().notice(message);
+
+        for (Vehicle vehicle: params.availableVehicles) {
+            message = new MyMessage(mySim());
+            message.setCode(Mc.loadVehicle);
+            message.setAddressee(Id.loaderAgent);
+            message.setVehicle(vehicle);
+            manager().request(message);
+        }
     }
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"

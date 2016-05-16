@@ -1,9 +1,14 @@
-package continualAssistants;
+package sk.epholl.dissim.sem3.continualAssistants;
 
-import OSPABA.*;
-import simulation.*;
-import agents.*;
+import OSPABA.CommonAgent;
+import OSPABA.MessageForm;
 import OSPABA.Process;
+import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.agents.LoaderAgent;
+import sk.epholl.dissim.sem3.entities.Loader;
+import sk.epholl.dissim.sem3.entities.Vehicle;
+import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 //meta! id="52"
 public class Loader1Process extends Process {
@@ -19,11 +24,20 @@ public class Loader1Process extends Process {
 
 	//meta! sender="LoaderAgent", id="53", type="Start"
 	public void processStart(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		Loader loader = myAgent().getLoader(0);
+		loader.startWork();
+		msg.setCode(Mc.finish);
 	}
 
 	//meta! userInfo="Process messages defined in code", id="0"
 	public void processDefault(MessageForm message) {
 		switch (message.code()) {
+			case Mc.finish:
+				Vehicle vehicle = myAgent().getLoader(0).finishVehicle();
+				((MyMessage)message).setVehicle(vehicle);
+				assistantFinished(message);
+				break;
 		}
 	}
 

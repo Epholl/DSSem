@@ -80,22 +80,22 @@ public class Tests {
             @Override
             public void onVehicleFinished(Vehicle vehicle) {
                 System.out.println(core.getSimulationTime() + ", Travel 1 finished, ");
-                l.accept(vehicle);
+                l.startWork(vehicle);
             }
         });
         l.setOnFinishedListener(vehicle -> {
-            System.out.println(core.getSimulationTime() + ", Vehicle loaded:   " + vehicle.getCurrentLoad());
-            r2.accept(vehicle);
+            System.out.println(core.getSimulationTime() + ", MyMessage loaded:   " + vehicle.getCurrentLoad());
+            r2.startWork(vehicle);
         });
         r2.setOnFinishedListener(vehicle -> {
             System.out.println(core.getSimulationTime() + ", Travel 2 finished");
-            u.accept(vehicle);
+            u.startWork(vehicle);
         });
         u.setOnFinishedListener(vehicle -> {
-            System.out.println(core.getSimulationTime() + ", Vehicle unloaded, total: " + u.getCurrentCargoAmount());
-            r1.accept(vehicle);
+            System.out.println(core.getSimulationTime() + ", MyMessage unloaded, total: " + u.getCurrentCargoAmount());
+            r1.startWork(vehicle);
         });
-        l.accept(v1);
+        l.startWork(v1);
         core.start();*/
     }
 }

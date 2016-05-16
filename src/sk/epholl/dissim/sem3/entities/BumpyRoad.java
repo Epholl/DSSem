@@ -3,6 +3,7 @@ package sk.epholl.dissim.sem3.entities;
 import OSPABA.Entity;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem2.util.Utils;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 import java.util.LinkedList;
 
@@ -14,7 +15,7 @@ public class BumpyRoad extends Entity {
     private double length;
     private String name;
 
-    private LinkedList<Vehicle> vehicles;
+    private LinkedList<MyMessage> vehicles;
 
     public BumpyRoad(Simulation sim, String name,  double length) {
         super(sim);

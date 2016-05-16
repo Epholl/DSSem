@@ -43,17 +43,20 @@ public class Loader extends Entity {
         return (currentTime.isAfter(openingHours) && currentTime.isBefore(closingHours));
     }
 
-    public double accept(Vehicle vehicle) {
+    public void setLoadedVehicle(Vehicle vehicle) {
+        this.loadedVehicle = vehicle;
+    }
 
-        loadedVehicle = vehicle;
-        startTime = loaderAgent.mySim().currentTime();
-
-        loadedCargo = loaderAgent.removeFromCargo(vehicle.getCapacity());
+    public void startWork() {
+        loadedCargo = loaderAgent.removeFromCargo(loadedVehicle.getCapacity());
         double loadingTimeHours = loadedCargo / loadingSpeed;
         double loadingTimeSeconds = Utils.hoursToSeconds(loadingTimeHours);
-
+        startTime = loaderAgent.mySim().currentTime();
         endTime = startTime + loadingTimeSeconds;
-        return loadingTimeSeconds;
+    }
+
+    public double getLoadingDuration() {
+        return endTime - startTime;
     }
 
     public double getCurrentVehicleLoadStatus() {
@@ -72,5 +75,9 @@ public class Loader extends Entity {
         loadedCargo = 0D;
         loadedVehicle = null;
         return loadedVehicle;
+    }
+
+    public LoaderAgent getLoaderAgent() {
+        return loaderAgent;
     }
 }

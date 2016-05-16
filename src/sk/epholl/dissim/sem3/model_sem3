@@ -10,6 +10,84 @@
       <UsePetriNet>false</UsePetriNet>
     </Agent>
     <Agent>
+      <SimId>5</SimId>
+      <InternalId>6</InternalId>
+      <Name>UnloaderAgent</Name>
+      <Bounds>1807,796,230,230</Bounds>
+      <Reasoner>UnloaderManager</Reasoner>
+      <ReasonerBounds>99,32,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Process>
+          <SimId>1009</SimId>
+          <InternalId>58</InternalId>
+          <Name>Unloader1Process</Name>
+          <Bounds>22,74,35,18</Bounds>
+        </Process>
+        <Process>
+          <SimId>1011</SimId>
+          <InternalId>62</InternalId>
+          <Name>Unloader2Process</Name>
+          <Bounds>22,107,35,18</Bounds>
+        </Process>
+        <Scheduler>
+          <SimId>1014</SimId>
+          <InternalId>72</InternalId>
+          <Name>UnloaderOpenScheduler</Name>
+          <Bounds>168,72,35,13</Bounds>
+        </Scheduler>
+      </Components>
+    </Agent>
+    <Agent>
+      <SimId>2</SimId>
+      <InternalId>3</InternalId>
+      <Name>QuarryTransportationModelAgent</Name>
+      <Bounds>1160,300,230,230</Bounds>
+      <Reasoner>QuarryTransportationModelManager</Reasoner>
+      <UsePetriNet>false</UsePetriNet>
+    </Agent>
+    <Agent>
+      <SimId>1</SimId>
+      <InternalId>2</InternalId>
+      <Name>SurroundingsAgent</Name>
+      <Bounds>500,300,230,230</Bounds>
+      <Reasoner>SurroundingsManager</Reasoner>
+      <ReasonerBounds>99,32,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Scheduler>
+          <SimId>1004</SimId>
+          <InternalId>32</InternalId>
+          <Name>MaterialConsumedScheduler</Name>
+          <Bounds>97,136,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1003</SimId>
+          <InternalId>25</InternalId>
+          <Name>SupplierCScheduler</Name>
+          <Bounds>22,135,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1001</SimId>
+          <InternalId>21</InternalId>
+          <Name>SupplierAScheduler</Name>
+          <Bounds>22,76,35,13</Bounds>
+        </Scheduler>
+        <Process>
+          <SimId>1006</SimId>
+          <InternalId>42</InternalId>
+          <Name>SupplierAActiveProcess</Name>
+          <Bounds>150,73,35,18</Bounds>
+        </Process>
+        <Scheduler>
+          <SimId>1002</SimId>
+          <InternalId>23</InternalId>
+          <Name>SupplierBScheduler</Name>
+          <Bounds>22,105,35,13</Bounds>
+        </Scheduler>
+      </Components>
+    </Agent>
+    <Agent>
       <SimId>4</SimId>
       <InternalId>5</InternalId>
       <Name>LoaderAgent</Name>
@@ -24,97 +102,19 @@
           <Name>Loader2Process</Name>
           <Bounds>21,103,35,18</Bounds>
         </Process>
-        <Process>
-          <SimId>1007</SimId>
-          <InternalId>52</InternalId>
-          <Name>Loader1Process</Name>
-          <Bounds>21,72,35,18</Bounds>
-        </Process>
         <Scheduler>
           <SimId>1012</SimId>
           <InternalId>67</InternalId>
           <Name>LoaderOpenScheduler</Name>
           <Bounds>161,71,35,13</Bounds>
         </Scheduler>
-      </Components>
-    </Agent>
-    <Agent>
-      <SimId>1</SimId>
-      <InternalId>2</InternalId>
-      <Name>SurroundingsAgent</Name>
-      <Bounds>500,300,230,230</Bounds>
-      <Reasoner>SurroundingsManager</Reasoner>
-      <ReasonerBounds>99,32,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
         <Process>
-          <SimId>1006</SimId>
-          <InternalId>42</InternalId>
-          <Name>SupplierAActiveProcess</Name>
-          <Bounds>150,73,35,18</Bounds>
-        </Process>
-        <Scheduler>
-          <SimId>1004</SimId>
-          <InternalId>32</InternalId>
-          <Name>MaterialConsumedScheduler</Name>
-          <Bounds>97,136,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1002</SimId>
-          <InternalId>23</InternalId>
-          <Name>SupplierBScheduler</Name>
-          <Bounds>22,105,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1003</SimId>
-          <InternalId>25</InternalId>
-          <Name>SupplierCScheduler</Name>
-          <Bounds>22,135,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1001</SimId>
-          <InternalId>21</InternalId>
-          <Name>SupplierAScheduler</Name>
-          <Bounds>22,76,35,13</Bounds>
-        </Scheduler>
-      </Components>
-    </Agent>
-    <Agent>
-      <SimId>5</SimId>
-      <InternalId>6</InternalId>
-      <Name>UnloaderAgent</Name>
-      <Bounds>1807,796,230,230</Bounds>
-      <Reasoner>UnloaderManager</Reasoner>
-      <ReasonerBounds>99,32,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
-        <Scheduler>
-          <SimId>1014</SimId>
-          <InternalId>72</InternalId>
-          <Name>UnloaderOpenScheduler</Name>
-          <Bounds>168,72,35,13</Bounds>
-        </Scheduler>
-        <Process>
-          <SimId>1009</SimId>
-          <InternalId>58</InternalId>
-          <Name>Unloader1Process</Name>
-          <Bounds>22,74,35,18</Bounds>
-        </Process>
-        <Process>
-          <SimId>1011</SimId>
-          <InternalId>62</InternalId>
-          <Name>Unloader2Process</Name>
-          <Bounds>22,107,35,18</Bounds>
+          <SimId>1007</SimId>
+          <InternalId>52</InternalId>
+          <Name>Loader1Process</Name>
+          <Bounds>21,72,35,18</Bounds>
         </Process>
       </Components>
-    </Agent>
-    <Agent>
-      <SimId>2</SimId>
-      <InternalId>3</InternalId>
-      <Name>QuarryTransportationModelAgent</Name>
-      <Bounds>1160,300,230,230</Bounds>
-      <Reasoner>QuarryTransportationModelManager</Reasoner>
-      <UsePetriNet>false</UsePetriNet>
     </Agent>
   </Agents>
   <Messages>
@@ -211,6 +211,14 @@
       <Destination>4</Destination>
     </Message>
     <Message>
+      <SimId>1012</SimId>
+      <InternalId>80</InternalId>
+      <Name>init</Name>
+      <Type>Notice</Type>
+      <Source>3</Source>
+      <Destination>6</Destination>
+    </Message>
+    <Message>
       <SimId>1007</SimId>
       <InternalId>17</InternalId>
       <Name>loadVehicle</Name>
@@ -281,5 +289,5 @@
       <Destination>62</Destination>
     </Message>
   </Messages>
-  <IID>79</IID>
+  <IID>82</IID>
 </ABAsim>

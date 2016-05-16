@@ -1,9 +1,11 @@
-package continualAssistants;
+package sk.epholl.dissim.sem3.continualAssistants;
 
-import OSPABA.*;
-import simulation.*;
-import agents.*;
+import OSPABA.CommonAgent;
+import OSPABA.MessageForm;
 import OSPABA.Process;
+import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.agents.LoaderAgent;
+import sk.epholl.dissim.sem3.simulation.Mc;
 
 //meta! id="54"
 public class Loader2Process extends Process {

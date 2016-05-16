@@ -6,7 +6,6 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.LoaderAgent;
 import sk.epholl.dissim.sem3.entities.Loader;
-import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
@@ -58,18 +57,22 @@ public class LoaderManager extends Manager {
 
 	//meta! sender="QuarryTransportationModelAgent", id="15", type="Notice"
 	public void processInit(MessageForm message) {
-        List<Vehicle> vehicles = ((MyMessage) message).getAllVehicles();
-        for (Vehicle vehicle: vehicles) {
-            MyMessage msg = new MyMessage(mySim());
-            msg.setVehicle(vehicle);
-            msg.setCode(Mc.loadVehicle);
-            processLoadVehicle(msg);
-        }
+        //TODO start activation and deactivation scripts for loaders
     }
 
 	//meta! sender="QuarryTransportationModelAgent", id="17", type="Request"
 	public void processLoadVehicle(MessageForm message) {
-        if (myAgent().)
+        MyMessage msg = (MyMessage) message;
+        if (myAgent().hasLoadingCapacityOpen()) {
+            Loader loader = myAgent().getFreeLoader();
+			loader.setLoadedVehicle(msg.getVehicle());
+			msg.setCode(Mc.start);
+			msg.setAddressee(loader.getLoaderAgent().id());
+			startContinualAssistant(msg);
+
+        } else {
+			myAgent().enqueueVehicle(msg);
+		}
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"
@@ -86,13 +89,28 @@ public class LoaderManager extends Manager {
 
 	//meta! sender="Loader2Process", id="55", type="Finish"
 	public void processFinishLoader2Process(MessageForm message) {
+        vehicleLoaded((MyMessage)message);
+        checkAndLoadNextVehicle();
 	}
 
 	//meta! sender="Loader1Process", id="53", type="Finish"
 	public void processFinishLoader1Process(MessageForm message) {
+        vehicleLoaded((MyMessage)message);
+        checkAndLoadNextVehicle();
 	}
 
+    public void vehicleLoaded(MyMessage msg) {
+        msg.setAddressee(Id.transportationAgent);
+        msg.setCode(Mc.transferVehicle);
+        msg.setTarget("B");
 
+    }
+
+    public void checkAndLoadNextVehicle() {
+        if (myAgent().hasEnqueuedVehicles()) {
+
+        }
+    }
 
 	//meta! sender="LoaderOpenScheduler", id="68", type="Finish"
 	public void processFinishLoaderOpenScheduler(MessageForm message) {
