@@ -34,11 +34,11 @@ public class SurroundingsAgent extends Agent {
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	private void init() {
 		new SurroundingsManager(Id.surroundingsManager, mySim(), this);
-		new SupplierAActiveProcess(Id.supplierAActiveProcess, mySim(), this);
 		new MaterialConsumedScheduler(Id.materialConsumedScheduler, mySim(), this);
-		new SupplierBScheduler(Id.supplierBScheduler, mySim(), this);
 		new SupplierCScheduler(Id.supplierCScheduler, mySim(), this);
 		new SupplierAScheduler(Id.supplierAScheduler, mySim(), this);
+		new SupplierAActiveProcess(Id.supplierAActiveProcess, mySim(), this);
+		new SupplierBScheduler(Id.supplierBScheduler, mySim(), this);
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.requestMaterialConsumption);
 	}

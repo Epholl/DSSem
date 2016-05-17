@@ -51,6 +51,10 @@ public class UnloaderManager extends Manager {
 	public void processFinishUnloader2Process(MessageForm message) {
 	}
 
+	//meta! sender="QuarryTransportationModelAgent", id="80", type="Notice"
+	public void processInit(MessageForm message) {
+	}
+
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public void init() {
 	}
@@ -58,24 +62,28 @@ public class UnloaderManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.requestMaterialConsumption:
-			processRequestMaterialConsumption(message);
+		case Mc.init:
+			processInit(message);
 		break;
 
 		case Mc.finish:
 			switch (message.sender().id()) {
-			case Id.unloaderOpenScheduler:
-				processFinishUnloaderOpenScheduler(message);
-			break;
-
 			case Id.unloader1Process:
 				processFinishUnloader1Process(message);
+			break;
+
+			case Id.unloaderOpenScheduler:
+				processFinishUnloaderOpenScheduler(message);
 			break;
 
 			case Id.unloader2Process:
 				processFinishUnloader2Process(message);
 			break;
 			}
+		break;
+
+		case Mc.requestMaterialConsumption:
+			processRequestMaterialConsumption(message);
 		break;
 
 		case Mc.unloadVehicle:

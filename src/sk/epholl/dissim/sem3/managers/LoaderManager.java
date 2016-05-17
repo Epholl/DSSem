@@ -100,7 +100,6 @@ public class LoaderManager extends Manager {
 	}
 
     public void vehicleLoaded(MyMessage msg) {
-        msg.setAddressee(Id.transportationAgent);
         msg.setCode(Mc.transferVehicle);
         msg.setTarget("B");
 
@@ -123,18 +122,14 @@ public class LoaderManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.materialDelivered:
-			processMaterialDelivered(message);
-		break;
-
 		case Mc.finish:
 			switch (message.sender().id()) {
-			case Id.loader2Process:
-				processFinishLoader2Process(message);
-			break;
-
 			case Id.loader1Process:
 				processFinishLoader1Process(message);
+			break;
+
+			case Id.loader2Process:
+				processFinishLoader2Process(message);
 			break;
 
 			case Id.loaderOpenScheduler:
@@ -143,12 +138,16 @@ public class LoaderManager extends Manager {
 			}
 		break;
 
-		case Mc.loadVehicle:
-			processLoadVehicle(message);
+		case Mc.materialDelivered:
+			processMaterialDelivered(message);
 		break;
 
 		case Mc.init:
 			processInit(message);
+		break;
+
+		case Mc.loadVehicle:
+			processLoadVehicle(message);
 		break;
 
 		default:

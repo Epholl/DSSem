@@ -64,32 +64,32 @@ public class QuarryTransportationModelManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.transferVehicle:
-			processTransferVehicle(message);
-		break;
+		case Mc.requestMaterialConsumption:
+			switch (message.sender().id()) {
+			case Id.surroundingsAgent:
+				processRequestMaterialConsumptionSurroundingsAgent(message);
+			break;
 
-		case Mc.unloadVehicle:
-			processUnloadVehicle(message);
-		break;
-
-		case Mc.materialDelivered:
-			processMaterialDelivered(message);
+			case Id.unloaderAgent:
+				processRequestMaterialConsumptionUnloaderAgent(message);
+			break;
+			}
 		break;
 
 		case Mc.loadVehicle:
 			processLoadVehicle(message);
 		break;
 
-		case Mc.requestMaterialConsumption:
-			switch (message.sender().id()) {
-			case Id.unloaderAgent:
-				processRequestMaterialConsumptionUnloaderAgent(message);
-			break;
+		case Mc.materialDelivered:
+			processMaterialDelivered(message);
+		break;
 
-			case Id.surroundingsAgent:
-				processRequestMaterialConsumptionSurroundingsAgent(message);
-			break;
-			}
+		case Mc.transferVehicle:
+			processTransferVehicle(message);
+		break;
+
+		case Mc.unloadVehicle:
+			processUnloadVehicle(message);
 		break;
 
 		default:

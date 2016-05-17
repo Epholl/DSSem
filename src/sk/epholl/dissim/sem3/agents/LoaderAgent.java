@@ -89,8 +89,8 @@ public class LoaderAgent extends Agent {
 	private void init() {
 		new LoaderManager(Id.loaderManager, mySim(), this);
 		new Loader2Process(Id.loader2Process, mySim(), this);
-        new Loader1Process(Id.loader1Process, mySim(), this);
 		new LoaderOpenScheduler(Id.loaderOpenScheduler, mySim(), this);
+		new Loader1Process(Id.loader1Process, mySim(), this);
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.materialDelivered);
 		addOwnMessage(Mc.loadVehicle);

@@ -106,10 +106,6 @@ public class SurroundingsManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.init:
-			processInit(message);
-		break;
-
 		case Mc.finish:
 			switch (message.sender().id()) {
 			case Id.supplierAScheduler:
@@ -120,22 +116,26 @@ public class SurroundingsManager extends Manager {
 				processFinishMaterialConsumedScheduler(message);
 			break;
 
-			case Id.supplierCScheduler:
-				processFinishSupplierCScheduler(message);
+			case Id.supplierBScheduler:
+				processFinishSupplierBScheduler(message);
 			break;
 
 			case Id.supplierAActiveProcess:
 				processFinishSupplierAActiveProcess(message);
 			break;
 
-			case Id.supplierBScheduler:
-				processFinishSupplierBScheduler(message);
+			case Id.supplierCScheduler:
+				processFinishSupplierCScheduler(message);
 			break;
 			}
 		break;
 
 		case Mc.requestMaterialConsumption:
 			processRequestMaterialConsumption(message);
+		break;
+
+		case Mc.init:
+			processInit(message);
 		break;
 
 		default:
