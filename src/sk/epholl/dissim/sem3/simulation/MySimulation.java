@@ -2,8 +2,10 @@ package sk.epholl.dissim.sem3.simulation;
 
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.*;
+import sk.epholl.dissim.sem3.util.Utils;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class MySimulation extends Simulation {
 
@@ -18,7 +20,7 @@ public class MySimulation extends Simulation {
         super.prepareSimulation();
         // Create global statistcis
 
-        // needs to be initialized from UI
+        //TODO needs to be initialized from UI
         startDateTime = LocalDateTime.of(2016, 5, 1, 7, 30);
     }
 
@@ -36,7 +38,7 @@ public class MySimulation extends Simulation {
 
     @Override
     public void simulationFinished() {
-        // Dysplay simulation results
+        // Dysplay SIM results
         super.simulationFinished();
     }
 
@@ -47,6 +49,11 @@ public class MySimulation extends Simulation {
     public LocalDateTime getSimTimeNiceFormat() {
         return startDateTime.plusSeconds((long) currentTime());
     }
+
+	public double durationTillTime(LocalTime localTime) {
+		LocalTime simTime = getSimTimeNiceFormat().toLocalTime();
+		return Utils.secondsUntilNextTime(simTime, localTime);
+	}
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	private void init() {

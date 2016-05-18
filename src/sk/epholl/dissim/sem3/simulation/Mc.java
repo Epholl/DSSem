@@ -5,6 +5,7 @@ import OSPABA.IdList;
 public class Mc extends IdList {
 
     public static final int supplierEnded = 1;
+	public static final int vehicleLoaded = 2;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public static final int unloadVehicle = 1010;

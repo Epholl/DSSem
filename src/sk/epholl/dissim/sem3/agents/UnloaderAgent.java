@@ -2,6 +2,9 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.continualAssistants.Unloader1Process;
+import sk.epholl.dissim.sem3.continualAssistants.Unloader2Process;
+import sk.epholl.dissim.sem3.continualAssistants.UnloaderOpenScheduler;
 import sk.epholl.dissim.sem3.managers.UnloaderManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;

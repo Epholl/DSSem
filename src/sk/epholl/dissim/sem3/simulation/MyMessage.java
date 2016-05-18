@@ -2,16 +2,15 @@ package sk.epholl.dissim.sem3.simulation;
 
 import OSPABA.MessageForm;
 import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.entities.Loader;
 import sk.epholl.dissim.sem3.entities.Vehicle;
-
-import java.util.List;
 
 public class MyMessage extends MessageForm {
 
     private double amount;
     private Vehicle vehicle;
     private String target;
-    private List<Vehicle> allVehicles;
+    private Loader loader;
 
     public MyMessage(Simulation sim) {
         super(sim);
@@ -34,7 +33,7 @@ public class MyMessage extends MessageForm {
         vehicle = original.vehicle;
         amount = original.amount;
         target = original.target;
-        allVehicles = original.allVehicles;
+        loader = original.loader;
     }
 
     public double getAmount() {
@@ -61,11 +60,11 @@ public class MyMessage extends MessageForm {
         this.target = target;
     }
 
-    public List<Vehicle> getAllVehicles() {
-        return allVehicles;
+    public Loader getLoader() {
+        return loader;
     }
 
-    public void setAllVehicles(List<Vehicle> allVehicles) {
-        this.allVehicles = allVehicles;
+    public void setLoader(Loader loader) {
+        this.loader = loader;
     }
 }

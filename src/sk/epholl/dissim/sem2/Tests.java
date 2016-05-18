@@ -28,7 +28,7 @@ public class Tests {
 
         Sem2SimulationRunner runner = new Sem2SimulationRunner();
         runner.setIterationCount(10000);
-        runner.setSimulation(new Sem2SimulationParameters(), 3);
+        runner.setSIM(new Sem2SimulationParameters(), 3);
         runner.setSimListener(new Sem2SimulationRunner.Listener() {
             @Override
             public void onFinalResults(Sem2SimulationRunner.StatisticCounter averageTime, Sem2SimulationRunner.StatisticCounter avgLoaderWait, Sem2SimulationRunner.StatisticCounter avgLoaderQueue, Sem2SimulationRunner.StatisticCounter AvgUnloaderWait, Sem2SimulationRunner.StatisticCounter avgUnloaderQueue) {

@@ -8,12 +8,15 @@ import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
 import sk.epholl.dissim.sem3.simulation.SimulationParameters;
+import sk.epholl.dissim.sem3.util.Log;
 
 //meta! id="3"
 public class QuarryTransportationModelAgent extends Agent {
     public QuarryTransportationModelAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
+        Log.setSimulation(mySim());
         init();
+        addOwnMessage(Mc.vehicleLoaded);
     }
 
     @Override

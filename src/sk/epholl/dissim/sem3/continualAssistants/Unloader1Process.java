@@ -1,9 +1,11 @@
-package continualAssistants;
+package sk.epholl.dissim.sem3.continualAssistants;
 
-import OSPABA.*;
-import simulation.*;
-import agents.*;
+import OSPABA.CommonAgent;
+import OSPABA.MessageForm;
 import OSPABA.Process;
+import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.agents.UnloaderAgent;
+import sk.epholl.dissim.sem3.simulation.Mc;
 
 //meta! id="58"
 public class Unloader1Process extends Process {

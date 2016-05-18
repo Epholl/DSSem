@@ -10,20 +10,11 @@ import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-
 //meta! id="5"
 public class LoaderManager extends Manager {
 
-	private List<Loader> loaders;
-
     public LoaderManager(int id, Simulation mySim, Agent myAgent) {
         super(id, mySim, myAgent);
-		loaders = new ArrayList<>();
-		loaders.add(new Loader(mySim, 180, LocalTime.of(7, 0), LocalTime.of(18, 0), myAgent()));
-		loaders.add(new Loader(mySim, 250, LocalTime.of(9, 0), LocalTime.of(22, 0), myAgent()));
         init();
     }
 
@@ -37,42 +28,19 @@ public class LoaderManager extends Manager {
         }
     }
 
-	public boolean hasAFreeLoader() {
-		for (Loader loader : loaders) {
-			if (loader.canAccept()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean hasAnOpenLoader() {
-		for (Loader loader : loaders) {
-			if (loader.isOpen()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	//meta! sender="QuarryTransportationModelAgent", id="15", type="Notice"
 	public void processInit(MessageForm message) {
+		for (Loader loader: myAgent().loaders) {
+
+		}
         //TODO start activation and deactivation scripts for loaders
     }
 
 	//meta! sender="QuarryTransportationModelAgent", id="17", type="Request"
 	public void processLoadVehicle(MessageForm message) {
-        MyMessage msg = (MyMessage) message;
-        if (myAgent().hasLoadingCapacityOpen()) {
-            Loader loader = myAgent().getFreeLoader();
-			loader.setLoadedVehicle(msg.getVehicle());
-			msg.setCode(Mc.start);
-			msg.setAddressee(loader.getLoaderAgent().id());
-			startContinualAssistant(msg);
-
-        } else {
-			myAgent().enqueueVehicle(msg);
-		}
+		MyMessage msg = (MyMessage) message;
+		myAgent().enqueueVehicle(msg);
+		tryLoadingNextVehicle();
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"
@@ -85,30 +53,30 @@ public class LoaderManager extends Manager {
 	public void processMaterialDelivered(MessageForm message) {
 		MyMessage msg = (MyMessage) message;
 		myAgent().addToCargo(msg.getAmount());
+		tryLoadingNextVehicle();
     }
 
-	//meta! sender="Loader2Process", id="55", type="Finish"
-	public void processFinishLoader2Process(MessageForm message) {
+	//meta! sender="LoaderProcess", id="53", type="Finish"
+	public void processFinishLoaderProcess(MessageForm message) {
         vehicleLoaded((MyMessage)message);
-        checkAndLoadNextVehicle();
+        tryLoadingNextVehicle();
 	}
 
-	//meta! sender="Loader1Process", id="53", type="Finish"
-	public void processFinishLoader1Process(MessageForm message) {
-        vehicleLoaded((MyMessage)message);
-        checkAndLoadNextVehicle();
+	public void tryLoadingNextVehicle() {
+		if (myAgent().hasEnqueuedVehicles() && myAgent().hasLoadingCapacityOpen() && myAgent().hasCargoToLoad()) {
+			MyMessage msg = myAgent().dequeueVehicle();
+			Loader loader = myAgent().getFreeLoader();
+			loader.setLoadedVehicle(msg.getVehicle());
+			msg.setLoader(loader);
+			msg.setCode(Mc.start);
+			msg.setAddressee(Id.loaderProcess);
+			startContinualAssistant(msg);
+		}
 	}
 
     public void vehicleLoaded(MyMessage msg) {
-        msg.setCode(Mc.transferVehicle);
-        msg.setTarget("B");
-
-    }
-
-    public void checkAndLoadNextVehicle() {
-        if (myAgent().hasEnqueuedVehicles()) {
-
-        }
+        msg.setCode(Mc.vehicleLoaded);
+        response(msg);
     }
 
 	//meta! sender="LoaderOpenScheduler", id="68", type="Finish"
@@ -124,12 +92,8 @@ public class LoaderManager extends Manager {
 		switch (message.code()) {
 		case Mc.finish:
 			switch (message.sender().id()) {
-			case Id.loader1Process:
-				processFinishLoader1Process(message);
-			break;
-
-			case Id.loader2Process:
-				processFinishLoader2Process(message);
+			case Id.loaderProcess:
+				processFinishLoaderProcess(message);
 			break;
 
 			case Id.loaderOpenScheduler:

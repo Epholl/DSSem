@@ -18,9 +18,8 @@ public class Id extends IdList {
 	public static final int loaderOpenScheduler = 1012;
 	public static final int unloaderOpenScheduler = 1014;
 	public static final int supplierAActiveProcess = 1006;
-	public static final int loader1Process = 1007;
+	public static final int loaderProcess = 1007;
 	public static final int supplierAScheduler = 1001;
-	public static final int loader2Process = 1008;
 	public static final int supplierBScheduler = 1002;
 	public static final int supplierCScheduler = 1003;
 	public static final int unloader1Process = 1009;

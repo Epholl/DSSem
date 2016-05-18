@@ -7,6 +7,8 @@ import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.QuarryTransportationModelAgent;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
+import sk.epholl.dissim.sem3.util.Log;
 
 //meta! id="3"
 public class QuarryTransportationModelManager extends Manager {
@@ -27,6 +29,7 @@ public class QuarryTransportationModelManager extends Manager {
 
 	//meta! sender="SurroundingsAgent", id="11", type="Notice"
 	public void processMaterialDelivered(MessageForm message) {
+		Log.println("material delivered " + ((MyMessage)message).getAmount());
 		message.setAddressee(Id.loaderAgent);
 		notice(message);
     }
@@ -49,7 +52,15 @@ public class QuarryTransportationModelManager extends Manager {
 
 	//meta! userInfo="Process messages defined in code", id="0"
 	public void processDefault(MessageForm message) {
-        switch (message.code()) {
+		MyMessage msg = (MyMessage) message;
+        switch (msg.code()) {
+			case Mc.vehicleLoaded:
+				Log.println("vehicle loaded.");
+				msg.setCode(Mc.transferVehicle);
+				msg.setAddressee(Id.transportationAgent);
+				msg.setTarget("B");
+				request(msg);
+				break;
         }
     }
 
@@ -64,37 +75,37 @@ public class QuarryTransportationModelManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.requestMaterialConsumption:
-			switch (message.sender().id()) {
-			case Id.surroundingsAgent:
-				processRequestMaterialConsumptionSurroundingsAgent(message);
+			case Mc.requestMaterialConsumption:
+				switch (message.sender().id()) {
+				case Id.surroundingsAgent:
+					processRequestMaterialConsumptionSurroundingsAgent(message);
+				break;
+
+				case Id.unloaderAgent:
+					processRequestMaterialConsumptionUnloaderAgent(message);
+				break;
+				}
 			break;
 
-			case Id.unloaderAgent:
-				processRequestMaterialConsumptionUnloaderAgent(message);
+			case Mc.loadVehicle:
+				processLoadVehicle(message);
 			break;
-			}
-		break;
 
-		case Mc.loadVehicle:
-			processLoadVehicle(message);
-		break;
+			case Mc.materialDelivered:
+				processMaterialDelivered(message);
+			break;
 
-		case Mc.materialDelivered:
-			processMaterialDelivered(message);
-		break;
+			case Mc.transferVehicle:
+				processTransferVehicle(message);
+			break;
 
-		case Mc.transferVehicle:
-			processTransferVehicle(message);
-		break;
+			case Mc.unloadVehicle:
+				processUnloadVehicle(message);
+			break;
 
-		case Mc.unloadVehicle:
-			processUnloadVehicle(message);
-		break;
-
-		default:
-			processDefault(message);
-		break;
+			default:
+				processDefault(message);
+			break;
 		}
 	}
 	//meta! tag="end"
