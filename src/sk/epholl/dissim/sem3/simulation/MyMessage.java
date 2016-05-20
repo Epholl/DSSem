@@ -5,8 +5,6 @@ import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.entities.Loader;
 import sk.epholl.dissim.sem3.entities.Vehicle;
 
-import java.time.LocalTime;
-
 public class MyMessage extends MessageForm {
 
     private double amount;
@@ -15,8 +13,7 @@ public class MyMessage extends MessageForm {
     private Loader loader;
     //private Unloader unloader;
 
-    private LocalTime openingTime;
-    private LocalTime closingTime;
+    private double travelArriveTime;
 
     public MyMessage(Simulation sim) {
         super(sim);
@@ -74,19 +71,11 @@ public class MyMessage extends MessageForm {
         this.loader = loader;
     }
 
-    public LocalTime getOpeningTime() {
-        return openingTime;
+    public double getTravelArriveTime() {
+        return travelArriveTime;
     }
 
-    public void setOpeningTime(LocalTime openingTime) {
-        this.openingTime = openingTime;
-    }
-
-    public LocalTime getClosingTime() {
-        return closingTime;
-    }
-
-    public void setClosingTime(LocalTime closingTime) {
-        this.closingTime = closingTime;
+    public void setTravelArriveTime(double travelArriveTime) {
+        this.travelArriveTime = travelArriveTime;
     }
 }
