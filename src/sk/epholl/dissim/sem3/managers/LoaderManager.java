@@ -31,9 +31,12 @@ public class LoaderManager extends Manager {
 	//meta! sender="QuarryTransportationModelAgent", id="15", type="Notice"
 	public void processInit(MessageForm message) {
 		for (Loader loader: myAgent().loaders) {
-
+			MyMessage msg = (MyMessage) message.createCopy();
+			msg.setLoader(loader);
+			msg.setCode(Mc.start);
+			msg.setAddressee(Id.loaderOpenScheduler);
+			startContinualAssistant(msg);
 		}
-        //TODO start activation and deactivation scripts for loaders
     }
 
 	//meta! sender="QuarryTransportationModelAgent", id="17", type="Request"

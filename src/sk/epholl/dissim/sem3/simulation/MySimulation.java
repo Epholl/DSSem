@@ -21,7 +21,7 @@ public class MySimulation extends Simulation {
         // Create global statistcis
 
         //TODO needs to be initialized from UI
-        startDateTime = LocalDateTime.of(2016, 5, 1, 7, 30);
+        startDateTime = LocalDateTime.of(2016, 5, 1, 7, 0);
     }
 
     @Override

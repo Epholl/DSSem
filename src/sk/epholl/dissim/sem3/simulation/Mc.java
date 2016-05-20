@@ -6,6 +6,8 @@ public class Mc extends IdList {
 
     public static final int supplierEnded = 1;
 	public static final int vehicleLoaded = 2;
+	public static final int loaderOpen = 3;
+	public static final int loaderClose = 4;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public static final int unloadVehicle = 1010;

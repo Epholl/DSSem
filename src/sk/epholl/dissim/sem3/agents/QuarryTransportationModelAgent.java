@@ -16,7 +16,6 @@ public class QuarryTransportationModelAgent extends Agent {
         super(id, mySim, parent);
         Log.setSimulation(mySim());
         init();
-        addOwnMessage(Mc.vehicleLoaded);
     }
 
     @Override
@@ -58,6 +57,7 @@ public class QuarryTransportationModelAgent extends Agent {
 		addOwnMessage(Mc.unloadVehicle);
 		addOwnMessage(Mc.transferVehicle);
 		addOwnMessage(Mc.requestMaterialConsumption);
+        addOwnMessage(Mc.vehicleLoaded);
 	}
 	//meta! tag="end"
 }

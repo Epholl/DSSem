@@ -37,4 +37,9 @@ public class Utils {
 
         return seconds;
     }
+
+    public static boolean timeInInterval(LocalTime startTime, LocalTime endTime, LocalTime compared) {
+        return startTime.equals(compared)
+                || (compared.isAfter(startTime) && endTime.isAfter(compared));
+    }
 }

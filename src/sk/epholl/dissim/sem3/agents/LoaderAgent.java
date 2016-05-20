@@ -27,7 +27,7 @@ public class LoaderAgent extends Agent {
     public LoaderAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
         loaders.add(new Loader(mySim(), 180, LocalTime.of(7, 0), LocalTime.of(18, 0), this));
-        //loaders.add(new Loader(mySim(), 250, LocalTime.of(9, 0), LocalTime.of(22, 0), this));
+        loaders.add(new Loader(mySim(), 250, LocalTime.of(9, 0), LocalTime.of(22, 0), this));
         init();
     }
 
@@ -96,6 +96,8 @@ public class LoaderAgent extends Agent {
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.materialDelivered);
 		addOwnMessage(Mc.loadVehicle);
+        addOwnMessage(Mc.loaderOpen);
+        addOwnMessage(Mc.loaderClose);
 	}
 	//meta! tag="end"
 }

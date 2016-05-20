@@ -2,9 +2,9 @@ package sk.epholl.dissim.sem3.entities;
 
 import OSPABA.Entity;
 import OSPABA.Simulation;
-import sk.epholl.dissim.sem2.util.Utils;
 import sk.epholl.dissim.sem3.agents.LoaderAgent;
 import sk.epholl.dissim.sem3.simulation.MySimulation;
+import sk.epholl.dissim.sem3.util.Utils;
 
 import java.time.LocalTime;
 
@@ -40,7 +40,7 @@ public class Loader extends Entity {
 
     public boolean isOpen() {
         LocalTime currentTime = ((MySimulation)mySim()).getSimTimeNiceFormat().toLocalTime();
-        return (currentTime.isAfter(openingHours) && currentTime.isBefore(closingHours));
+        return Utils.timeInInterval(openingHours, closingHours, currentTime);
     }
 
     public void setLoadedVehicle(Vehicle vehicle) {
@@ -75,6 +75,22 @@ public class Loader extends Entity {
         loadedCargo = 0D;
         loadedVehicle = null;
         return loadedVehicle;
+    }
+
+    public LocalTime getOpeningHours() {
+        return openingHours;
+    }
+
+    public void setOpeningHours(LocalTime openingHours) {
+        this.openingHours = openingHours;
+    }
+
+    public LocalTime getClosingHours() {
+        return closingHours;
+    }
+
+    public void setClosingHours(LocalTime closingHours) {
+        this.closingHours = closingHours;
     }
 
     public LoaderAgent getLoaderAgent() {
