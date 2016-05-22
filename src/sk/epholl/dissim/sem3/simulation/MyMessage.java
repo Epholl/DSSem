@@ -9,6 +9,7 @@ public class MyMessage extends MessageForm {
 
     private double amount;
     private Vehicle vehicle;
+    private String from;
     private String target;
     private Loader loader;
     //private Unloader unloader;
@@ -53,6 +54,14 @@ public class MyMessage extends MessageForm {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getTarget() {

@@ -17,7 +17,7 @@ public class BumpyRoad extends Entity {
 
     private LinkedList<MyMessage> vehicles;
 
-    public BumpyRoad(Simulation sim, String name,  double length) {
+    public BumpyRoad(Simulation sim, double length, String name) {
         super(sim);
         this.length = length;
         this.name = name;

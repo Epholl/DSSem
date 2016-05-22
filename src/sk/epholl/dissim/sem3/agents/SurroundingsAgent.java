@@ -2,10 +2,15 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
-import sk.epholl.dissim.sem3.continualAssistants.*;
+import sk.epholl.dissim.sem3.continualAssistants.MaterialConsumedScheduler;
+import sk.epholl.dissim.sem3.continualAssistants.SupplierScheduler;
 import sk.epholl.dissim.sem3.managers.SurroundingsManager;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MySimulation;
+import sk.epholl.dissim.sem3.simulation.SimulationParameters;
+
+import java.util.List;
 
 //meta! id="2"
 public class SurroundingsAgent extends Agent {
@@ -35,10 +40,13 @@ public class SurroundingsAgent extends Agent {
 	private void init() {
 		new SurroundingsManager(Id.surroundingsManager, mySim(), this);
 		new MaterialConsumedScheduler(Id.materialConsumedScheduler, mySim(), this);
-		new SupplierCScheduler(Id.supplierCScheduler, mySim(), this);
-		new SupplierAScheduler(Id.supplierAScheduler, mySim(), this);
-		new SupplierAActiveProcess(Id.supplierAActiveProcess, mySim(), this);
-		new SupplierBScheduler(Id.supplierBScheduler, mySim(), this);
+
+        SimulationParameters params = ((MySimulation)mySim()).getSimParams();
+        List<SimulationParameters.Supplier> suppliers = params.suppliers;
+        for (int i = 0; i < suppliers.size(); i++) {
+            SimulationParameters.Supplier supplier = suppliers.get(i);
+            new SupplierScheduler(Id.supplierAScheduler + i, mySim(), this, supplier.amountGenerator, supplier.timeBetweenGenerator, supplier.name);
+        }
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.requestMaterialConsumption);
 	}

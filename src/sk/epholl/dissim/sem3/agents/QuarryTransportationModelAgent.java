@@ -4,10 +4,7 @@ import OSPABA.Agent;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.managers.QuarryTransportationModelManager;
-import sk.epholl.dissim.sem3.simulation.Id;
-import sk.epholl.dissim.sem3.simulation.Mc;
-import sk.epholl.dissim.sem3.simulation.MyMessage;
-import sk.epholl.dissim.sem3.simulation.SimulationParameters;
+import sk.epholl.dissim.sem3.simulation.*;
 import sk.epholl.dissim.sem3.util.Log;
 
 //meta! id="3"
@@ -23,7 +20,7 @@ public class QuarryTransportationModelAgent extends Agent {
         super.prepareReplication();
         // Setup component for the next replication
 
-        SimulationParameters params = SimulationParameters.getDefaultParameters(mySim());
+        SimulationParameters params = ((MySimulation)mySim()).getSimParams();
 
         MyMessage message = new MyMessage(mySim());
         message.setCode(Mc.init);
@@ -40,11 +37,11 @@ public class QuarryTransportationModelAgent extends Agent {
         message.setAddressee(Id.unloaderAgent);
         manager().notice(message);
 
-        for (Vehicle vehicle: params.availableVehicles) {
+        for (SimulationParameters.Vehicle v: params.availableVehicles) {
             message = new MyMessage(mySim());
             message.setCode(Mc.loadVehicle);
             message.setAddressee(Id.loaderAgent);
-            message.setVehicle(vehicle);
+            message.setVehicle(new Vehicle(mySim(), v.capacity, v.speed, v.breakdownProbability, v.repairTime));
             manager().request(message);
         }
     }
@@ -58,6 +55,7 @@ public class QuarryTransportationModelAgent extends Agent {
 		addOwnMessage(Mc.transferVehicle);
 		addOwnMessage(Mc.requestMaterialConsumption);
         addOwnMessage(Mc.vehicleLoaded);
+        addOwnMessage(Mc.vehicleTransferred);
 	}
 	//meta! tag="end"
 }

@@ -6,7 +6,6 @@ import sk.epholl.dissim.sem2.util.Utils;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Tomáš on 20.05.2016.
@@ -18,8 +17,10 @@ public class NarrowRoad extends Entity {
 
     private LinkedList<MyMessage> vehicles = new LinkedList<>();
 
-    public NarrowRoad(Simulation mySim) {
-        super(mySim);
+    public NarrowRoad(Simulation sim, double length, String name) {
+        super(sim);
+        this.length = length;
+        this.name = name;
     }
 
     public double accept(MyMessage vehicle) {
@@ -30,7 +31,8 @@ public class NarrowRoad extends Entity {
 
         for (MyMessage travelling: vehicles) {
             if (travelling.getTravelArriveTime() > arriveTime) {
-                arriveTime = travelling.getTravelArriveTime()
+                arriveTime = travelling.getTravelArriveTime();
+                //TODO finish
             }
         }
 

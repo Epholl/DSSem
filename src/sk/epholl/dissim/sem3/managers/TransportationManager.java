@@ -6,6 +6,7 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.TransportationAgent;
 import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 //meta! id="4"
 public class TransportationManager extends Manager {
@@ -26,6 +27,8 @@ public class TransportationManager extends Manager {
 
 	//meta! sender="QuarryTransportationModelAgent", id="16", type="Request"
 	public void processTransferVehicle(MessageForm message) {
+        MyMessage msg = (MyMessage) message;
+
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"

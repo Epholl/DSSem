@@ -39,7 +39,7 @@ public class Loader extends Entity {
     }
 
     public boolean isOpen() {
-        LocalTime currentTime = ((MySimulation)mySim()).getSimTimeNiceFormat().toLocalTime();
+        LocalTime currentTime = ((MySimulation)mySim()).getSimDateTime().toLocalTime();
         return Utils.timeInInterval(openingHours, closingHours, currentTime);
     }
 

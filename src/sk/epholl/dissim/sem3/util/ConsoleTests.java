@@ -1,6 +1,7 @@
 package sk.epholl.dissim.sem3.util;
 
 import sk.epholl.dissim.sem3.simulation.MySimulation;
+import sk.epholl.dissim.sem3.simulation.SimulationParameters;
 
 /**
  * Created by Tomáš on 11.05.2016.
@@ -8,9 +9,10 @@ import sk.epholl.dissim.sem3.simulation.MySimulation;
 public class ConsoleTests {
 
     public static void main(String[] args) {
-        MySimulation sim = new MySimulation();
+        SimulationParameters params = SimulationParameters.getDefaultParameters();
+        MySimulation sim = new MySimulation(params);
         sim.simulate(1, 72000L);
-        System.out.println(sim.getSimTimeNiceFormat());
+        System.out.println(sim.getSimDateTime());
 
         /*LocalTime startT = LocalTime.of(6, 0);
         LocalTime endT = LocalTime.of(7, 0);

@@ -11,8 +11,11 @@ public class MySimulation extends Simulation {
 
     private LocalDateTime startDateTime;
 
-    public MySimulation() {
-        init();
+	private SimulationParameters params;
+
+    public MySimulation(SimulationParameters params) {
+        this.params = params;
+		init();
     }
 
     @Override
@@ -42,16 +45,20 @@ public class MySimulation extends Simulation {
         super.simulationFinished();
     }
 
+	public SimulationParameters getSimParams() {
+		return params;
+	}
+
     public LocalDateTime getSimStartTime() {
         return startDateTime;
     }
 
-    public LocalDateTime getSimTimeNiceFormat() {
+    public LocalDateTime getSimDateTime() {
         return startDateTime.plusSeconds((long) currentTime());
     }
 
 	public double durationTillTime(LocalTime localTime) {
-		LocalTime simTime = getSimTimeNiceFormat().toLocalTime();
+		LocalTime simTime = getSimDateTime().toLocalTime();
 		return Utils.secondsUntilNextTime(simTime, localTime);
 	}
 
