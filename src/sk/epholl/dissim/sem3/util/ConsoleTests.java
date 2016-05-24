@@ -12,7 +12,7 @@ public class ConsoleTests {
         SimulationParameters params = SimulationParameters.getDefaultParameters();
         MySimulation sim = new MySimulation(params);
         sim.simulate(1, 72000L);
-        System.out.println(sim.getSimDateTime());
+        System.out.println("Sim ended: " + sim.getSimDateTime());
 
         /*LocalTime startT = LocalTime.of(6, 0);
         LocalTime endT = LocalTime.of(7, 0);

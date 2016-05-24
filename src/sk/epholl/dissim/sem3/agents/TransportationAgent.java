@@ -2,6 +2,7 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.continualAssistants.TransportationProcess;
 import sk.epholl.dissim.sem3.entities.BumpyRoad;
 import sk.epholl.dissim.sem3.entities.NarrowRoad;
 import sk.epholl.dissim.sem3.managers.TransportationManager;
@@ -35,6 +36,7 @@ public class TransportationAgent extends Agent {
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	private void init() {
 		new TransportationManager(Id.transportationManager, mySim(), this);
+        new TransportationProcess(Id.transportationProcess, mySim(), this);
 		addOwnMessage(Mc.transferVehicle);
         addOwnMessage(Mc.vehicleTransferred);
 	}

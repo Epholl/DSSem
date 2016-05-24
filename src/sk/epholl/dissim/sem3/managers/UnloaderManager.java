@@ -5,8 +5,10 @@ import OSPABA.Manager;
 import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.UnloaderAgent;
+import sk.epholl.dissim.sem3.entities.Unloader;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
+import sk.epholl.dissim.sem3.simulation.MyMessage;
 
 //meta! id="6"
 public class UnloaderManager extends Manager {
@@ -37,22 +39,49 @@ public class UnloaderManager extends Manager {
 
 	//meta! sender="QuarryTransportationModelAgent", id="65", type="Request"
 	public void processUnloadVehicle(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		myAgent().enqueueVehicle(msg);
+		tryUnloadingNextVehicle();
 	}
 
 	//meta! sender="UnloaderOpenScheduler", id="73", type="Finish"
 	public void processFinishUnloaderOpenScheduler(MessageForm message) {
 	}
 
-	//meta! sender="Unloader1Process", id="59", type="Finish"
-	public void processFinishUnloader1Process(MessageForm message) {
+	//meta! sender="UnloaderProcess", id="59", type="Finish"
+	public void processFinishUnloaderProcess(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		if (msg.getVehicle().getCurrentLoad() > 0) {
+			msg.setCode(Mc.unloadVehicle);
+			myAgent().returnVehicleToQueue(msg);
+		} else {
+			message.setCode(Mc.vehicleUnloaded);
+			response(message);
+		}
+		tryUnloadingNextVehicle();
 	}
 
-	//meta! sender="Unloader2Process", id="63", type="Finish"
-	public void processFinishUnloader2Process(MessageForm message) {
+	public void tryUnloadingNextVehicle() {
+		if (myAgent().hasEnqueuedVehicles() && myAgent().hasUnloadingCapacityOpen() && myAgent().canUnloadCargo()) {
+			MyMessage msg = myAgent().dequeueVehicle();
+			Unloader unloader = myAgent().getFreeUnloader();
+			unloader.setUnloadedVehicle(msg.getVehicle());
+			msg.setUnloader(unloader);
+			msg.setCode(Mc.start);
+			msg.setAddressee(Id.unloaderProcess);
+			startContinualAssistant(msg);
+		}
 	}
 
 	//meta! sender="QuarryTransportationModelAgent", id="80", type="Notice"
 	public void processInit(MessageForm message) {
+		for (Unloader unloader: myAgent().unloaders) {
+			MyMessage msg = (MyMessage) message.createCopy();
+			msg.setUnloader(unloader);
+			msg.setCode(Mc.start);
+			msg.setAddressee(Id.unloaderOpenScheduler);
+			startContinualAssistant(msg);
+		}
 	}
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
@@ -68,16 +97,12 @@ public class UnloaderManager extends Manager {
 
 		case Mc.finish:
 			switch (message.sender().id()) {
-			case Id.unloader1Process:
-				processFinishUnloader1Process(message);
+			case Id.unloaderProcess:
+				processFinishUnloaderProcess(message);
 			break;
 
 			case Id.unloaderOpenScheduler:
 				processFinishUnloaderOpenScheduler(message);
-			break;
-
-			case Id.unloader2Process:
-				processFinishUnloader2Process(message);
 			break;
 			}
 		break;

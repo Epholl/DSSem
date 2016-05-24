@@ -67,7 +67,7 @@ public class MySimulation extends Simulation {
 		setQuarryTransportationModelAgent(new QuarryTransportationModelAgent(Id.quarryTransportationModelAgent, this, null));
 		setTransportationAgent(new TransportationAgent(Id.transportationAgent, this, quarryTransportationModelAgent()));
 		setLoaderAgent(new LoaderAgent(Id.loaderAgent, this, quarryTransportationModelAgent()));
-		setUnloaderAgent(new UnloaderAgent(Id.unloaderAgent, this, quarryTransportationModelAgent()));
+		setUnloaderAgent(new UnloaderAgent(Id.unloaderAgent, this, quarryTransportationModelAgent(), 1));
 		setSurroundingsAgent(new SurroundingsAgent(Id.surroundingsAgent, this, quarryTransportationModelAgent()));
 	}
 

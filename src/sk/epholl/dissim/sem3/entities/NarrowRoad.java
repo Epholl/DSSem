@@ -32,7 +32,6 @@ public class NarrowRoad extends Entity {
         for (MyMessage travelling: vehicles) {
             if (travelling.getTravelArriveTime() > arriveTime) {
                 arriveTime = travelling.getTravelArriveTime();
-                //TODO finish
             }
         }
 

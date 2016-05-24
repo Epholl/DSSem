@@ -39,10 +39,8 @@ public class QuarryTransportationModelAgent extends Agent {
 
         for (SimulationParameters.Vehicle v: params.availableVehicles) {
             message = new MyMessage(mySim());
-            message.setCode(Mc.loadVehicle);
-            message.setAddressee(Id.loaderAgent);
             message.setVehicle(new Vehicle(mySim(), v.capacity, v.speed, v.breakdownProbability, v.repairTime));
-            manager().request(message);
+            ((QuarryTransportationModelManager)manager()).processLoadVehicle(message);
         }
     }
 
@@ -56,6 +54,7 @@ public class QuarryTransportationModelAgent extends Agent {
 		addOwnMessage(Mc.requestMaterialConsumption);
         addOwnMessage(Mc.vehicleLoaded);
         addOwnMessage(Mc.vehicleTransferred);
+        addOwnMessage(Mc.vehicleUnloaded);
 	}
 	//meta! tag="end"
 }

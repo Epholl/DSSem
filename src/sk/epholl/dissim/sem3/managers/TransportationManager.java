@@ -5,6 +5,7 @@ import OSPABA.Manager;
 import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.TransportationAgent;
+import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
 
@@ -28,7 +29,8 @@ public class TransportationManager extends Manager {
 	//meta! sender="QuarryTransportationModelAgent", id="16", type="Request"
 	public void processTransferVehicle(MessageForm message) {
         MyMessage msg = (MyMessage) message;
-
+        msg.setAddressee(Id.transportationProcess);
+        startContinualAssistant(message);
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"
@@ -44,13 +46,18 @@ public class TransportationManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-		case Mc.transferVehicle:
-			processTransferVehicle(message);
-		break;
+		    case Mc.transferVehicle:
+			    processTransferVehicle(message);
+		        break;
 
-		default:
-			processDefault(message);
-		break;
+            case Mc.finish:
+                message.setCode(Mc.vehicleTransferred);
+                response(message);
+                break;
+
+            default:
+			    processDefault(message);
+		        break;
 		}
 	}
 	//meta! tag="end"

@@ -96,15 +96,7 @@ public class Vehicle extends Entity {
         this.location = location;
     }
 
-    public double unload() {
-
-        finishedLoadsCount++;
-        double load = currentLoad;
-        currentLoad = 0d;
-        return load;
-    }
-
-    public void load(double currentLoad) {
+    public void setLoad(double currentLoad) {
         this.currentLoad = currentLoad;
     }
 

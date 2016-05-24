@@ -61,7 +61,8 @@ public class LoaderManager extends Manager {
 
 	//meta! sender="LoaderProcess", id="53", type="Finish"
 	public void processFinishLoaderProcess(MessageForm message) {
-        vehicleLoaded((MyMessage)message);
+		message.setCode(Mc.vehicleLoaded);
+		response(message);
         tryLoadingNextVehicle();
 	}
 
@@ -76,11 +77,6 @@ public class LoaderManager extends Manager {
 			startContinualAssistant(msg);
 		}
 	}
-
-    public void vehicleLoaded(MyMessage msg) {
-        msg.setCode(Mc.vehicleLoaded);
-        response(msg);
-    }
 
 	//meta! sender="LoaderOpenScheduler", id="68", type="Finish"
 	public void processFinishLoaderOpenScheduler(MessageForm message) {

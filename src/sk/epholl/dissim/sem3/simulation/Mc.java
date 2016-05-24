@@ -9,6 +9,7 @@ public class Mc extends IdList {
 	public static final int loaderOpen = 3;
 	public static final int loaderClose = 4;
 	public static final int vehicleTransferred = 5;
+	public static final int vehicleUnloaded = 6;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public static final int unloadVehicle = 1010;

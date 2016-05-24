@@ -22,7 +22,7 @@ public class Id extends IdList {
 	public static final int supplierAScheduler = 1001;
 	public static final int supplierBScheduler = 1002;
 	public static final int supplierCScheduler = 1003;
-	public static final int unloader1Process = 1009;
-	public static final int unloader2Process = 1011;
+	public static final int unloaderProcess = 1009;
+	public static final int transportationProcess = 1015;
 	//meta! tag="end"
 }

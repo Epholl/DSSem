@@ -3,6 +3,7 @@ package sk.epholl.dissim.sem3.simulation;
 import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.entities.Loader;
+import sk.epholl.dissim.sem3.entities.Unloader;
 import sk.epholl.dissim.sem3.entities.Vehicle;
 
 public class MyMessage extends MessageForm {
@@ -12,7 +13,7 @@ public class MyMessage extends MessageForm {
     private String from;
     private String target;
     private Loader loader;
-    //private Unloader unloader;
+    private Unloader unloader;
 
     private double travelArriveTime;
 
@@ -78,6 +79,14 @@ public class MyMessage extends MessageForm {
 
     public void setLoader(Loader loader) {
         this.loader = loader;
+    }
+
+    public Unloader getUnloader() {
+        return unloader;
+    }
+
+    public void setUnloader(Unloader unloader) {
+        this.unloader = unloader;
     }
 
     public double getTravelArriveTime() {

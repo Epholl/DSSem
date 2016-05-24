@@ -33,10 +33,11 @@ public class LoaderProcess extends Process {
 
 	//meta! userInfo="Process messages defined in code", id="0"
 	public void processDefault(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
 		switch (message.code()) {
 			case Mc.finish:
-				Vehicle vehicle = myAgent().getLoader(0).finishVehicle();
-				((MyMessage)message).setVehicle(vehicle);
+				Vehicle vehicle = msg.getLoader().finishVehicle();
+				msg.setVehicle(vehicle);
 				assistantFinished(message);
 				break;
 		}
