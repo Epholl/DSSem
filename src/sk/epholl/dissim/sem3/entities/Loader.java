@@ -40,11 +40,11 @@ public class Loader extends Entity {
 
     public boolean isOpen() {
         LocalTime currentTime = ((MySimulation)mySim()).getSimDateTime().toLocalTime();
-        return Utils.timeInInterval(openingHours, closingHours, currentTime);
+        return Utils.isTimeInInterval(openingHours, closingHours, currentTime);
     }
 
     public boolean isOpenAtTime(LocalTime time) {
-        return Utils.timeInInterval(openingHours, closingHours, time);
+        return Utils.isTimeInInterval(openingHours, closingHours, time);
     }
 
     public void setLoadedVehicle(Vehicle vehicle) {
@@ -52,7 +52,7 @@ public class Loader extends Entity {
     }
 
     public void startWork() {
-        loadedCargo = loaderAgent.removeFromCargo(loadedVehicle.getCapacity());
+        loadedCargo = loaderAgent.removeFromCargo(loadedVehicle.getAvailableCapacity());
         double loadingTimeHours = loadedCargo / loadingSpeed;
         double loadingTimeSeconds = Utils.hoursToSeconds(loadingTimeHours);
         startTime = loaderAgent.mySim().currentTime();
@@ -68,7 +68,7 @@ public class Loader extends Entity {
         double elapsedTime = loaderAgent.mySim().currentTime() - startTime;
         double currentlyLoaded = loadedCargo * (elapsedTime / timeDiff);
         loadedVehicle.setLoad(currentlyLoaded);
-        return currentlyLoaded;
+        return currentlyLoaded + loadedVehicle.getCurrentLoad();
     }
 
     public double getCurrentLoaderCargoStatus() {
@@ -78,7 +78,7 @@ public class Loader extends Entity {
     }
 
     public Vehicle finishVehicle() {
-        loadedVehicle.setLoad(loadedCargo);
+        loadedVehicle.setLoad(loadedVehicle.getCurrentLoad() + loadedCargo);
         loadedCargo = 0D;
         Vehicle returned = loadedVehicle;
         loadedVehicle = null;

@@ -1,5 +1,6 @@
 package sk.epholl.dissim.sem3.util;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -38,7 +39,11 @@ public class Utils {
         return seconds;
     }
 
-    public static boolean timeInInterval(LocalTime startTime, LocalTime endTime, LocalTime compared) {
+    public static double secondsBetweenDateTimes(LocalDateTime start, LocalDateTime end) {
+        return ChronoUnit.SECONDS.between(start, end);
+    }
+
+    public static boolean isTimeInInterval(LocalTime startTime, LocalTime endTime, LocalTime compared) {
         return startTime.equals(compared)
                 || (compared.isAfter(startTime) && endTime.isAfter(compared));
     }

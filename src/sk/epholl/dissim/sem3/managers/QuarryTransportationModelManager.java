@@ -5,10 +5,10 @@ import OSPABA.Manager;
 import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.QuarryTransportationModelAgent;
-import sk.epholl.dissim.sem3.simulation.Id;
-import sk.epholl.dissim.sem3.simulation.Mc;
-import sk.epholl.dissim.sem3.simulation.MyMessage;
+import sk.epholl.dissim.sem3.simulation.*;
 import sk.epholl.dissim.sem3.util.Log;
+
+import java.util.LinkedList;
 
 //meta! id="3"
 public class QuarryTransportationModelManager extends Manager {
@@ -60,17 +60,27 @@ public class QuarryTransportationModelManager extends Manager {
         switch (msg.code()) {
 			case Mc.vehicleLoaded:
 				Log.println("vehicle loaded: " + msg.getVehicle().toString());
-				msg.setCode(Mc.transferVehicle);
-				msg.setAddressee(Id.transportationAgent);
-				msg.setTarget("B");
-				request(msg);
+                msg.setCode(Mc.transferVehicle);
+                msg.setAddressee(Id.transportationAgent);
+                msg.setTarget("B");
+                if (params().parkingArea == SimulationParameters.NightParking.LOADERS && !myAgent().isUnloadersOpen()) {
+                    myAgent().parkForNight((MyMessage) message);
+                } else {
+                    request(msg);
+                }
+
 				break;
 			case Mc.vehicleUnloaded:
 				Log.println("Vehicle unloaded! " + msg.getVehicle().toString());
-				msg.setCode(Mc.transferVehicle);
-				msg.setAddressee(Id.transportationAgent);
-				msg.setTarget("C");
-				request(msg);
+                msg.setCode(Mc.transferVehicle);
+                msg.setAddressee(Id.transportationAgent);
+                msg.setTarget("C");
+                if (params().parkingArea == SimulationParameters.NightParking.UNLOADERS && !myAgent().isLoadersOpen()) {
+                    myAgent().parkForNight((MyMessage) message);
+                } else {
+                    request(msg);
+                }
+
 				break;
 			case Mc.vehicleTransferred:
                 Log.println("vehicle transferred to " + msg.getTarget() + ", " + msg.getVehicle().toString());
@@ -93,10 +103,24 @@ public class QuarryTransportationModelManager extends Manager {
 				break;
 			case Mc.loadersStateChanged:
 				Log.println("Loaders status has changed, open: " + msg.areLoadersOpen());
+                myAgent().setLoadersOpen(msg.areLoadersOpen());
 				break;
 			case Mc.unloadersStateChanged:
-				Log.println("Unloaders status has changed, open: " + msg.areLoadersOpen());
+				Log.println("Unloaders status has changed, open: " + msg.areUnloadersOpen());
+                myAgent().setUnloadersOpen(msg.areUnloadersOpen());
 				break;
+        }
+    }
+
+    public void morningWakeup(MessageForm message) {
+        Log.println("Morning wakeup call.");
+        myAgent().setUnloadersOpen(true);
+        myAgent().setLoadersOpen(true);
+
+        LinkedList<MyMessage> wakeupVehicles = myAgent().getParkedVehicles();
+        while (!wakeupVehicles.isEmpty()) {
+            MyMessage woken = wakeupVehicles.removeFirst();
+            processMessage(woken);
         }
     }
 
@@ -111,33 +135,47 @@ public class QuarryTransportationModelManager extends Manager {
 	@Override
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
-			case Mc.requestMaterialConsumption:
-				switch (message.sender().id()) {
-				case Id.surroundingsAgent:
-					processRequestMaterialConsumptionSurroundingsAgent(message);
-				break;
+            case Mc.requestMaterialConsumption:
+                switch (message.sender().id()) {
+                    case Id.surroundingsAgent:
+                        processRequestMaterialConsumptionSurroundingsAgent(message);
+                        break;
 
-				case Id.unloaderAgent:
-					processRequestMaterialConsumptionUnloaderAgent(message);
-				break;
-				}
-			break;
+                    case Id.unloaderAgent:
+                        processRequestMaterialConsumptionUnloaderAgent(message);
+                        break;
+                }
+                break;
 
-			case Mc.loadVehicle:
-				processLoadVehicle(message);
-			break;
+            case Mc.finish:
+                switch (message.sender().id()) {
+                    case Id.wakeupScheduler:
+                        morningWakeup(message);
+                        break;
+                }
+                break;
 
-			case Mc.materialDelivered:
-				processMaterialDelivered(message);
-			break;
+            case Mc.loadVehicle:
+                processLoadVehicle(message);
+                break;
 
-			case Mc.transferVehicle:
-				processTransferVehicle(message);
-			break;
+            case Mc.materialDelivered:
+                processMaterialDelivered(message);
+                break;
 
-			case Mc.unloadVehicle:
-				processUnloadVehicle(message);
-			break;
+            case Mc.transferVehicle:
+                processTransferVehicle(message);
+                break;
+
+            case Mc.unloadVehicle:
+                processUnloadVehicle(message);
+                break;
+
+            case Mc.init:
+                message.setAddressee(Id.wakeupScheduler);
+                message.setCode(Mc.start);
+                startContinualAssistant(message);
+                break;
 
 			default:
 				processDefault(message);
@@ -151,4 +189,7 @@ public class QuarryTransportationModelManager extends Manager {
         return (QuarryTransportationModelAgent) super.myAgent();
     }
 
+    private SimulationParameters params() {
+        return ((MySimulation)mySim()).getSimParams();
+    }
 }

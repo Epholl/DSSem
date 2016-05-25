@@ -3,8 +3,10 @@ package sk.epholl.dissim.sem3.simulation;
 import OSPRNG.*;
 import org.apache.commons.math3.distribution.BetaDistribution;
 import sk.epholl.dissim.sem3.util.Rand;
+import sk.epholl.dissim.sem3.util.Utils;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,13 @@ public class SimulationParameters {
         UNLOADERS
     }
 
+    public LocalDateTime startDateTime;
+    public int durationInMonths;
+
     public List<Vehicle> availableVehicles;
     public List<Supplier> suppliers;
+
+    public LocalTime wakeupTime;
 
     public Road roadAb;
     public Road roadBc;
@@ -29,14 +36,22 @@ public class SimulationParameters {
 
     public NightParking parkingArea;
 
+    public LocalDateTime getEndingDateTime() {
+        return startDateTime.plusMonths(durationInMonths);
+    }
+
+    public double getEndingSimulationTime() {
+        return Utils.secondsBetweenDateTimes(startDateTime, getEndingDateTime());
+    }
+
     public static SimulationParameters getDefaultParameters() {
         SimulationParameters params = new SimulationParameters();
         params.availableVehicles = new ArrayList<>();
-        //params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
-        //params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
-        params.availableVehicles.add(new Vehicle(1, 50, 0.04, 50));
-        params.availableVehicles.add(new Vehicle(1.1, 60, 0.04, 50));
-        params.availableVehicles.add(new Vehicle(1.2, 70, 0.04, 50));
+        params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
+        params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
+
+        params.startDateTime = LocalDateTime.of(2016, 5, 1, 7, 0);
+        params.durationInMonths = 18;
 
         params.suppliers = new ArrayList<>();
         params.suppliers.add(new Supplier(
@@ -62,6 +77,7 @@ public class SimulationParameters {
         params.unloaderCount = 1;
 
         params.parkingArea = NightParking.LOADERS;
+        params.wakeupTime = LocalTime.of(7, 0);
 
         params.roadAb = new Road(45);
         params.roadBc = new Road(15);

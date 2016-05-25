@@ -61,6 +61,10 @@ public class Vehicle extends Entity {
         return capacity;
     }
 
+    public double getAvailableCapacity() {
+        return capacity - currentLoad;
+    }
+
     public double getSpeed() {
         return speed;
     }

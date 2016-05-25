@@ -37,11 +37,11 @@ public class Unloader extends Entity {
 
     public boolean isOpen() {
         LocalTime currentTime = ((MySimulation)mySim()).getSimDateTime().toLocalTime();
-        return Utils.timeInInterval(openingHours, closingHours, currentTime);
+        return Utils.isTimeInInterval(openingHours, closingHours, currentTime);
     }
 
     public boolean isOpenAtTime(LocalTime time) {
-        return Utils.timeInInterval(openingHours, closingHours, time);
+        return Utils.isTimeInInterval(openingHours, closingHours, time);
     }
 
     public boolean canAccept() {

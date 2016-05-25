@@ -14,6 +14,7 @@ public class Mc extends IdList {
 	public static final int unloaderOpen = 8;
 	public static final int loadersStateChanged = 9;
 	public static final int unloadersStateChanged = 10;
+	public static final int morningWakeup = 11;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public static final int unloadVehicle = 1010;

@@ -24,5 +24,6 @@ public class Id extends IdList {
 	public static final int supplierCScheduler = 1003;
 	public static final int unloaderProcess = 1009;
 	public static final int transportationProcess = 1015;
+	public static final int wakeupScheduler = 1016;
 	//meta! tag="end"
 }

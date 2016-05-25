@@ -23,11 +23,14 @@ public class MySimulation extends Simulation {
         super.prepareSimulation();
         // Create global statistcis
 
-        //TODO needs to be initialized from UI
-        startDateTime = LocalDateTime.of(2016, 5, 1, 7, 0);
+        startDateTime = params.startDateTime;
     }
 
-    @Override
+	public void simulateAutoFigureEndDate(int replicationCount) {
+		super.simulate(replicationCount, params.getEndingSimulationTime());
+	}
+
+	@Override
     public void prepareReplication() {
         super.prepareReplication();
         // Reset entities, queues, local statistics, etc...
