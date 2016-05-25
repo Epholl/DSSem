@@ -17,6 +17,7 @@ public class Vehicle extends Entity {
     public static final String STATE_WAITING = "waiting ";
     public static final String STATE_LOADING = "loading";
     public static final String STATE_UNLOADING = "unloading";
+    public static final String STATE_NIGHT = "parked";
 
     public static final String DEFAULT_START_LOCATION = "A";
 

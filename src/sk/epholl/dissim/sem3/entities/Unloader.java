@@ -40,6 +40,10 @@ public class Unloader extends Entity {
         return Utils.timeInInterval(openingHours, closingHours, currentTime);
     }
 
+    public boolean isOpenAtTime(LocalTime time) {
+        return Utils.timeInInterval(openingHours, closingHours, time);
+    }
+
     public boolean canAccept() {
         return unloadedVehicle == null;
     }

@@ -10,6 +10,10 @@ public class Mc extends IdList {
 	public static final int loaderClose = 4;
 	public static final int vehicleTransferred = 5;
 	public static final int vehicleUnloaded = 6;
+	public static final int unloaderClose = 7;
+	public static final int unloaderOpen = 8;
+	public static final int loadersStateChanged = 9;
+	public static final int unloadersStateChanged = 10;
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"
 	public static final int unloadVehicle = 1010;

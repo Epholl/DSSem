@@ -15,6 +15,9 @@ public class MyMessage extends MessageForm {
     private Loader loader;
     private Unloader unloader;
 
+    private boolean loadersOpen;
+    private boolean unloadersOpen;
+
     private double travelArriveTime;
 
     public MyMessage(Simulation sim) {
@@ -39,7 +42,10 @@ public class MyMessage extends MessageForm {
         amount = original.amount;
         target = original.target;
         loader = original.loader;
+        unloader = original.unloader;
     }
+
+
 
     public double getAmount() {
         return amount;
@@ -87,6 +93,22 @@ public class MyMessage extends MessageForm {
 
     public void setUnloader(Unloader unloader) {
         this.unloader = unloader;
+    }
+
+    public boolean areLoadersOpen() {
+        return loadersOpen;
+    }
+
+    public void setLoadersOpen(boolean loadersOpen) {
+        this.loadersOpen = loadersOpen;
+    }
+
+    public boolean areUnloadersOpen() {
+        return unloadersOpen;
+    }
+
+    public void setUnloadersOpen(boolean unloadersOpen) {
+        this.unloadersOpen = unloadersOpen;
     }
 
     public double getTravelArriveTime() {

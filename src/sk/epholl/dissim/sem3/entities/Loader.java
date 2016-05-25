@@ -43,6 +43,10 @@ public class Loader extends Entity {
         return Utils.timeInInterval(openingHours, closingHours, currentTime);
     }
 
+    public boolean isOpenAtTime(LocalTime time) {
+        return Utils.timeInInterval(openingHours, closingHours, time);
+    }
+
     public void setLoadedVehicle(Vehicle vehicle) {
         this.loadedVehicle = vehicle;
     }

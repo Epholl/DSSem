@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class SimulationParameters {
 
+    public enum NightParking {
+        LOADERS,
+        UNLOADERS
+    }
+
     public List<Vehicle> availableVehicles;
     public List<Supplier> suppliers;
 
@@ -20,7 +25,9 @@ public class SimulationParameters {
     public Road roadBc;
     public Road roadCa;
 
-    public boolean buySecondUnloader;
+    public int unloaderCount;
+
+    public NightParking parkingArea;
 
     public static SimulationParameters getDefaultParameters() {
         SimulationParameters params = new SimulationParameters();
@@ -49,7 +56,9 @@ public class SimulationParameters {
                 new Rand(new ExponentialRNG(25.8D, 1d))
         ));
 
-        params.buySecondUnloader = false;
+        params.unloaderCount = 1;
+
+        params.parkingArea = NightParking.LOADERS;
 
         params.roadAb = new Road(45);
         params.roadBc = new Road(15);

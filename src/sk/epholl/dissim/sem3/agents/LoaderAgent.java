@@ -68,6 +68,26 @@ public class LoaderAgent extends Agent {
         return null;
     }
 
+    public int getOpenLoadersCount() {
+        int i = 0;
+        for (Loader loader: loaders) {
+            if (loader.isOpen()) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    public int getOpenLoadersCount(LocalTime time) {
+        int i = 0;
+        for (Loader loader: loaders) {
+            if (loader.isOpenAtTime(time)) {
+                i++;
+            }
+        }
+        return i;
+    }
+
     public Loader getLoader(int index) {
         return loaders.get(index);
     }

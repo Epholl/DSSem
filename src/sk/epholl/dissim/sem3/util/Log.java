@@ -1,6 +1,7 @@
 package sk.epholl.dissim.sem3.util;
 
 import OSPABA.Simulation;
+import sk.epholl.dissim.sem3.simulation.MySimulation;
 
 /**
  * Created by Tomáš on 19.05.2016.
@@ -20,6 +21,6 @@ public class Log {
         double time = SIM.currentTime();
         String callerClass = e.getStackTrace()[1].getClassName();
         int lineNumber = e.getStackTrace()[1].getLineNumber();
-        System.out.println(time + ", " + callerClass + ", " + lineNumber + ": " + message);
+        System.out.println(((MySimulation)SIM).getSimDateTime() + ", " + callerClass + ", " + lineNumber + ": " + message);
     }
 }

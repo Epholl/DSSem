@@ -46,6 +46,16 @@ public class UnloaderManager extends Manager {
 
 	//meta! sender="UnloaderOpenScheduler", id="73", type="Finish"
 	public void processFinishUnloaderOpenScheduler(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		boolean unloadersOpen = myAgent().getOpenUnloadersCount() > 0;
+		if (unloadersOpen) {
+			tryUnloadingNextVehicle();
+		}
+
+		msg.setCode(Mc.unloadersStateChanged);
+		msg.setUnloadersOpen(unloadersOpen);
+		msg.setAddressee(Id.quarryTransportationModelAgent);
+		notice(msg);
 	}
 
 	//meta! sender="UnloaderProcess", id="59", type="Finish"

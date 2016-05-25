@@ -80,6 +80,16 @@ public class LoaderManager extends Manager {
 
 	//meta! sender="LoaderOpenScheduler", id="68", type="Finish"
 	public void processFinishLoaderOpenScheduler(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		boolean loadersOpen = myAgent().getOpenLoadersCount() > 0;
+		if (loadersOpen) {
+			tryLoadingNextVehicle();
+		}
+
+		msg.setCode(Mc.loadersStateChanged);
+		msg.setLoadersOpen(loadersOpen);
+		msg.setAddressee(Id.quarryTransportationModelAgent);
+		notice(msg);
 	}
 
 	//meta! userInfo="Generated code: do not modify", tag="begin"

@@ -9,6 +9,10 @@ import sk.epholl.dissim.sem3.util.Log;
 
 //meta! id="3"
 public class QuarryTransportationModelAgent extends Agent {
+
+    private boolean loadersOpen;
+    private boolean unloadersOpen;
+
     public QuarryTransportationModelAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
         Log.setSimulation(mySim());
@@ -55,6 +59,8 @@ public class QuarryTransportationModelAgent extends Agent {
         addOwnMessage(Mc.vehicleLoaded);
         addOwnMessage(Mc.vehicleTransferred);
         addOwnMessage(Mc.vehicleUnloaded);
+        addOwnMessage(Mc.loadersStateChanged);
+        addOwnMessage(Mc.unloadersStateChanged);
 	}
 	//meta! tag="end"
 }

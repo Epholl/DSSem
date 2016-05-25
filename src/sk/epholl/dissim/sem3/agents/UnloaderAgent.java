@@ -28,7 +28,7 @@ public class UnloaderAgent extends Agent {
 	public UnloaderAgent(int id, Simulation mySim, Agent parent, int unloaderCount) {
         super(id, mySim, parent);
 		for (int i = 0; i < unloaderCount; i++) {
-			unloaders.add(new Unloader(mySim, 190, LocalTime.of(7, 30), LocalTime.of(22, 0), this));
+			unloaders.add(new Unloader(mySim, 190, LocalTime.of(7, 30), LocalTime.of(22, 00), this));
 		}
         init();
     }
@@ -79,6 +79,26 @@ public class UnloaderAgent extends Agent {
 		return null;
 	}
 
+	public int getOpenUnloadersCount() {
+		int i = 0;
+		for (Unloader unloader: unloaders) {
+			if (unloader.isOpen()) {
+				i++;
+			}
+		}
+		return i;
+	}
+
+	public int getOpenUnloadersCount(LocalTime time) {
+		int i = 0;
+		for (Unloader unloader: unloaders) {
+			if (unloader.isOpenAtTime(time)) {
+				i++;
+			}
+		}
+		return i;
+	}
+
 	public boolean hasUnloadingCapacityOpen() {
 		return getFreeUnloader() != null;
 	}
@@ -111,6 +131,8 @@ public class UnloaderAgent extends Agent {
 		addOwnMessage(Mc.init);
 		addOwnMessage(Mc.unloadVehicle);
 		addOwnMessage(Mc.requestMaterialConsumption);
+		addOwnMessage(Mc.unloaderClose);
+		addOwnMessage(Mc.unloaderOpen);
 	}
 
 	public boolean canUnloadCargo() {

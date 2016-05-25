@@ -59,14 +59,21 @@ public class QuarryTransportationModelManager extends Manager {
 		MyMessage msg = (MyMessage) message;
         switch (msg.code()) {
 			case Mc.vehicleLoaded:
-				Log.println("vehicle loaded: " + msg.getVehicle().toString());
+				//Log.println("vehicle loaded: " + msg.getVehicle().toString());
 				msg.setCode(Mc.transferVehicle);
 				msg.setAddressee(Id.transportationAgent);
 				msg.setTarget("B");
 				request(msg);
 				break;
+			case Mc.vehicleUnloaded:
+				//Log.println("Vehicle unloaded! " + msg.getVehicle().toString());
+				msg.setCode(Mc.transferVehicle);
+				msg.setAddressee(Id.transportationAgent);
+				msg.setTarget("C");
+				request(msg);
+				break;
 			case Mc.vehicleTransferred:
-                Log.println("vehicle transferred to " + msg.getTarget() + ", " + msg.getVehicle().toString());
+                //Log.println("vehicle transferred to " + msg.getTarget() + ", " + msg.getVehicle().toString());
                 switch (msg.getTarget()) {
                     case "A":
                         processLoadVehicle(message);
@@ -83,6 +90,12 @@ public class QuarryTransportationModelManager extends Manager {
                         request(msg);
                         break;
                 }
+				break;
+			case Mc.loadersStateChanged:
+				Log.println("Loaders status has changed, open: " + msg.areLoadersOpen());
+				break;
+			case Mc.unloadersStateChanged:
+				Log.println("Unloaders status has changed, open: " + msg.areLoadersOpen());
 				break;
         }
     }
@@ -125,10 +138,6 @@ public class QuarryTransportationModelManager extends Manager {
 			case Mc.unloadVehicle:
 				processUnloadVehicle(message);
 			break;
-
-            case Mc.vehicleUnloaded:
-                Log.println("Vehicle unloaded!");
-                break;
 
 			default:
 				processDefault(message);
