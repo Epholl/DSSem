@@ -32,8 +32,11 @@ public class SimulationParameters {
     public static SimulationParameters getDefaultParameters() {
         SimulationParameters params = new SimulationParameters();
         params.availableVehicles = new ArrayList<>();
-        params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
-        params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
+        //params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
+        //params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
+        params.availableVehicles.add(new Vehicle(1, 50, 0.04, 50));
+        params.availableVehicles.add(new Vehicle(1.1, 60, 0.04, 50));
+        params.availableVehicles.add(new Vehicle(1.2, 70, 0.04, 50));
 
         params.suppliers = new ArrayList<>();
         params.suppliers.add(new Supplier(

@@ -29,7 +29,7 @@ public class QuarryTransportationModelManager extends Manager {
 
 	//meta! sender="SurroundingsAgent", id="11", type="Notice"
 	public void processMaterialDelivered(MessageForm message) {
-		//Log.println("material delivered " + ((MyMessage)message).getFrom() + ": " + ((MyMessage)message).getAmount());
+		Log.println("material delivered " + ((MyMessage)message).getFrom() + ": " + ((MyMessage)message).getAmount());
 		message.setAddressee(Id.loaderAgent);
 		notice(message);
     }
@@ -59,21 +59,21 @@ public class QuarryTransportationModelManager extends Manager {
 		MyMessage msg = (MyMessage) message;
         switch (msg.code()) {
 			case Mc.vehicleLoaded:
-				//Log.println("vehicle loaded: " + msg.getVehicle().toString());
+				Log.println("vehicle loaded: " + msg.getVehicle().toString());
 				msg.setCode(Mc.transferVehicle);
 				msg.setAddressee(Id.transportationAgent);
 				msg.setTarget("B");
 				request(msg);
 				break;
 			case Mc.vehicleUnloaded:
-				//Log.println("Vehicle unloaded! " + msg.getVehicle().toString());
+				Log.println("Vehicle unloaded! " + msg.getVehicle().toString());
 				msg.setCode(Mc.transferVehicle);
 				msg.setAddressee(Id.transportationAgent);
 				msg.setTarget("C");
 				request(msg);
 				break;
 			case Mc.vehicleTransferred:
-                //Log.println("vehicle transferred to " + msg.getTarget() + ", " + msg.getVehicle().toString());
+                Log.println("vehicle transferred to " + msg.getTarget() + ", " + msg.getVehicle().toString());
                 switch (msg.getTarget()) {
                     case "A":
                         processLoadVehicle(message);

@@ -36,6 +36,7 @@ public class TransportationManager extends Manager {
 	//meta! userInfo="Process messages defined in code", id="0"
 	public void processDefault(MessageForm message) {
         switch (message.code()) {
+
         }
     }
 

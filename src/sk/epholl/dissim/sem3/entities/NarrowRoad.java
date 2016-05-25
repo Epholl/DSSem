@@ -15,7 +15,8 @@ public class NarrowRoad extends Entity {
     private double length;
     private String name;
 
-    private LinkedList<MyMessage> vehicles = new LinkedList<>();
+    private LinkedList<MyMessage> messages = new LinkedList<>();
+    private LinkedList<Vehicle> vehicles = new LinkedList<>();
 
     public NarrowRoad(Simulation sim, double length, String name) {
         super(sim);
@@ -23,25 +24,31 @@ public class NarrowRoad extends Entity {
         this.name = name;
     }
 
-    public double accept(MyMessage vehicle) {
-        double travelDurationInHours = length / vehicle.getVehicle().getSpeed();
+    public double accept(MyMessage message) {
+        double travelDurationInHours = length / message.getVehicle().getSpeed();
         double travelDurationInSeconds = Utils.hoursToSeconds(travelDurationInHours);
 
         double arriveTime = mySim().currentTime() + travelDurationInSeconds;
 
-        for (MyMessage travelling: vehicles) {
+        for (MyMessage travelling: messages) {
             if (travelling.getTravelArriveTime() > arriveTime) {
                 arriveTime = travelling.getTravelArriveTime();
             }
         }
 
         travelDurationInSeconds = arriveTime - mySim().currentTime();
-        vehicle.setTravelArriveTime(arriveTime);
-        vehicles.addLast(vehicle);
+        message.setTravelArriveTime(arriveTime);
+        messages.addLast(message);
+        vehicles.addLast(message.getVehicle());
         return travelDurationInSeconds;
     }
 
-    public MyMessage dequeueTop() {
+    public Vehicle dequeueTopVehicle() {
         return vehicles.removeFirst();
+    }
+    public void removeFromQueue(MyMessage msg) {
+        if (!messages.remove(msg)) {
+            throw new IllegalStateException("Dequeued a vehicle not on road.");
+        }
     }
 }
