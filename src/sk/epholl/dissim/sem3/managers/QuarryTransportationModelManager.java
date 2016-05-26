@@ -29,7 +29,9 @@ public class QuarryTransportationModelManager extends Manager {
 
 	//meta! sender="SurroundingsAgent", id="11", type="Notice"
 	public void processMaterialDelivered(MessageForm message) {
-		Log.println("material delivered " + ((MyMessage)message).getFrom() + ": " + ((MyMessage)message).getAmount());
+        MyMessage msg = (MyMessage) message;
+		Log.println("material delivered " + msg.getFrom() + ": " + msg.getAmount());
+        myAgent().cargoDelivered(msg.getFrom(), msg.getAmount());
 		message.setAddressee(Id.loaderAgent);
 		notice(message);
     }

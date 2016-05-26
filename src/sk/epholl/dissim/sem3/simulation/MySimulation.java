@@ -2,6 +2,7 @@ package sk.epholl.dissim.sem3.simulation;
 
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.*;
+import sk.epholl.dissim.sem3.util.Log;
 import sk.epholl.dissim.sem3.util.Utils;
 
 import java.time.LocalDateTime;
@@ -23,8 +24,9 @@ public class MySimulation extends Simulation {
         super.prepareSimulation();
         // Create global statistcis
 
-        startDateTime = params.startDateTime;
-    }
+		startDateTime = params.startDateTime;
+		Log.println("Preparing simulation " + currentReplication() + " of " + replicationCount());
+	}
 
 	public void simulateAutoFigureEndDate(int replicationCount) {
 		super.simulate(replicationCount, params.getEndingSimulationTime());

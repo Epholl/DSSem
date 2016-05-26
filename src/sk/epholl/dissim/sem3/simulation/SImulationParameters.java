@@ -46,13 +46,26 @@ public class SimulationParameters {
         return Utils.secondsBetweenDateTimes(startDateTime, getEndingDateTime());
     }
 
+    public static List<Vehicle> getVanillaVehicleTypes() {
+        List<Vehicle> types = new ArrayList<>();
+        types.add(new Vehicle(10, 60, 0.12, 80, 30000, 3));
+        types.add(new Vehicle(20, 50, 0.04, 50, 55000, Long.MAX_VALUE));
+        types.add(new Vehicle(25, 45, 0.04, 100, 40000, Long.MAX_VALUE));
+        types.add(new Vehicle(5, 70, 0.11, 44, 60000, Long.MAX_VALUE));
+        types.add(new Vehicle(40, 30, 0.06, 170, 10000, 2));
+        return types;
+    }
+
     public static SimulationParameters getDefaultParameters() {
         SimulationParameters params = new SimulationParameters();
         params.availableVehicles = new ArrayList<>();
-        params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
-        params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
+        params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80, 30000, 3));
+        params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50, 55000, Long.MAX_VALUE));
+        params.availableVehicles.add(new Vehicle(25, 45, 0.04, 100, 40000, Long.MAX_VALUE));
+        params.availableVehicles.add(new Vehicle(5, 70, 0.11, 44, 60000, Long.MAX_VALUE));
+        params.availableVehicles.add(new Vehicle(40, 30, 0.06, 170, 10000, 2));
 
-        params.startDateTime = LocalDateTime.of(2016, 5, 1, 22, 0);
+        params.startDateTime = LocalDateTime.of(2016, 1, 1, 7, 0);
         params.durationInMonths = 18;
 
         params.suppliers = new ArrayList<>();
@@ -110,11 +123,22 @@ public class SimulationParameters {
         public double breakdownProbability;
         public double repairTime;
 
-        public Vehicle(double capacity, double speed, double breakdownProbability, double repairTime) {
+        public long price;
+        public long maxCount;
+
+        public long realCount = 0;
+
+        public Vehicle(double capacity, double speed, double breakdownProbability, double repairTime, long price, long maxCount) {
             this.capacity = capacity;
             this.speed = speed;
             this.breakdownProbability = breakdownProbability;
             this.repairTime = repairTime;
+            this.price = price;
+            this.maxCount = maxCount;
+        }
+
+        public Vehicle clone() {
+            return new Vehicle(capacity, speed, breakdownProbability, repairTime, price, maxCount);
         }
     }
 

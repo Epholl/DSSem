@@ -2,6 +2,7 @@ package sk.epholl.dissim.sem3.agents;
 
 import OSPABA.Agent;
 import OSPABA.Simulation;
+import OSPStat.Stat;
 import sk.epholl.dissim.sem3.continualAssistants.MorningWakeupScheduler;
 import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.managers.QuarryTransportationModelManager;
@@ -21,6 +22,18 @@ public class QuarryTransportationModelAgent extends Agent {
     private LinkedList<MyMessage> nightParkedVehicles = new LinkedList<>();
     private List<Vehicle> vehicles = new ArrayList<>();
 
+    private Stat cargoDeliveredA;
+    private Stat cargoDeliveredB;
+    private Stat cargoDeliveredC;
+
+    private long countA;
+    private long countB;
+    private long countC;
+
+    private double sumA;
+    private double sumB;
+    private double sumC;
+
     public QuarryTransportationModelAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
         Log.setSimulation(mySim());
@@ -36,6 +49,18 @@ public class QuarryTransportationModelAgent extends Agent {
         vehicles.clear();
         loadersOpen = true;
         unloadersOpen = true;
+
+        cargoDeliveredA = new Stat();
+        cargoDeliveredB = new Stat();
+        cargoDeliveredC = new Stat();
+
+        countA = 0;
+        countB = 0;
+        countC = 0;
+
+        sumA = 0.0;
+        sumB = 0.0;
+        sumC = 0.0;
 
         SimulationParameters params = ((MySimulation)mySim()).getSimParams();
 
@@ -82,6 +107,66 @@ public class QuarryTransportationModelAgent extends Agent {
 
     public void setUnloadersOpen(boolean unloadersOpen) {
         this.unloadersOpen = unloadersOpen;
+    }
+
+    public Stat getCargoDeliveredA() {
+        return cargoDeliveredA;
+    }
+
+    public Stat getCargoDeliveredB() {
+        return cargoDeliveredB;
+    }
+
+    public Stat getCargoDeliveredC() {
+        return cargoDeliveredC;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public double getSumA() {
+        return sumA;
+    }
+
+    public double getSumB() {
+        return sumB;
+    }
+
+    public double getSumC() {
+        return sumC;
+    }
+
+    public long getCountA() {
+        return countA;
+    }
+
+    public long getCountB() {
+        return countB;
+    }
+
+    public long getCountC() {
+        return countC;
+    }
+
+    public void cargoDelivered(String from, double amount) {
+        switch (from) {
+            case "A":
+                countA++;
+                sumA += amount;
+                cargoDeliveredA.addSample(amount);
+                break;
+            case "B":
+                countB++;
+                sumB+= amount;
+                cargoDeliveredB.addSample(amount);
+                break;
+            case "C":
+                countC++;
+                sumC += amount;
+                cargoDeliveredC.addSample(amount);
+                break;
+        }
     }
 
     public void parkForNight(MyMessage msg) {
