@@ -89,6 +89,10 @@ public class SurroundingsManager extends Manager {
 
 	//meta! sender="MaterialConsumedScheduler", id="33", type="Finish"
 	public void processFinishMaterialConsumedScheduler(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		msg.setCode(Mc.requestMaterialConsumption);
+		msg.setAddressee(Id.quarryTransportationModelAgent);
+		notice(msg);
     }
 
     //meta! userInfo="Removed from model"

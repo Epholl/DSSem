@@ -3,6 +3,7 @@ package sk.epholl.dissim.sem3.agents;
 import OSPABA.Agent;
 import OSPABA.Simulation;
 import OSPDataStruct.SimQueue;
+import OSPStat.Stat;
 import sk.epholl.dissim.sem3.continualAssistants.UnloaderOpenScheduler;
 import sk.epholl.dissim.sem3.continualAssistants.UnloaderProcess;
 import sk.epholl.dissim.sem3.entities.Unloader;
@@ -25,6 +26,8 @@ public class UnloaderAgent extends Agent {
 
 	public List<Unloader> unloaders = new ArrayList<>();
 
+	private Stat successfulRemovalsStat;
+
 	public UnloaderAgent(int id, Simulation mySim, Agent parent, int unloaderCount) {
         super(id, mySim, parent);
 		for (int i = 0; i < unloaderCount; i++) {
@@ -38,6 +41,7 @@ public class UnloaderAgent extends Agent {
     public void prepareReplication() {
         super.prepareReplication();
         // Setup component for the next replication
+		successfulRemovalsStat = new Stat();
     }
 
 	public boolean hasCargoAmount(double requestedAmount) {
@@ -60,8 +64,10 @@ public class UnloaderAgent extends Agent {
 		if (currentStorageCargo < requestedAmount) {
 			requestedAmount = currentStorageCargo;
 			currentStorageCargo = 0D;
+			successfulRemovalsStat.addSample(0D);
 		} else {
 			currentStorageCargo -= requestedAmount;
+			successfulRemovalsStat.addSample(1D);
 		}
 		return requestedAmount;
 	}
@@ -108,7 +114,7 @@ public class UnloaderAgent extends Agent {
 	}
 
 	public void enqueueVehicle(MyMessage message) {
-		unloaderQueue.addLast(message);
+		unloaderQueue.enqueue(message);
 	}
 
 	public void returnVehicleToQueue(MyMessage message) {
@@ -116,7 +122,7 @@ public class UnloaderAgent extends Agent {
 	}
 
 	public MyMessage dequeueVehicle() {
-		return unloaderQueue.removeFirst();
+		return unloaderQueue.dequeue();
 	}
 
 	public SimQueue<MyMessage> getQueue() {

@@ -97,11 +97,11 @@ public class LoaderAgent extends Agent {
     }
 
     public void enqueueVehicle(MyMessage message) {
-        loaderQueue.addLast(message);
+        loaderQueue.enqueue(message);
     }
 
     public MyMessage dequeueVehicle() {
-        return loaderQueue.removeFirst();
+        return loaderQueue.dequeue();
     }
 
     public SimQueue<MyMessage> getQueue() {

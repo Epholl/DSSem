@@ -136,15 +136,8 @@ public class QuarryTransportationModelManager extends Manager {
 	public void processMessage(MessageForm message) {
 		switch (message.code()) {
             case Mc.requestMaterialConsumption:
-                switch (message.sender().id()) {
-                    case Id.surroundingsAgent:
-                        processRequestMaterialConsumptionSurroundingsAgent(message);
-                        break;
-
-                    case Id.unloaderAgent:
-                        processRequestMaterialConsumptionUnloaderAgent(message);
-                        break;
-                }
+                message.setAddressee(Id.unloaderAgent);
+                notice(message);
                 break;
 
             case Mc.finish:

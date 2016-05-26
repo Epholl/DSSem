@@ -32,6 +32,8 @@ public class SimulationParameters {
     public Road roadBc;
     public Road roadCa;
 
+    public Rand consumerAmountRandom;
+
     public int unloaderCount;
 
     public NightParking parkingArea;
@@ -50,7 +52,7 @@ public class SimulationParameters {
         params.availableVehicles.add(new Vehicle(10, 60, 0.12, 80));
         params.availableVehicles.add(new Vehicle(20, 50, 0.04, 50));
 
-        params.startDateTime = LocalDateTime.of(2016, 5, 1, 7, 0);
+        params.startDateTime = LocalDateTime.of(2016, 5, 1, 22, 0);
         params.durationInMonths = 18;
 
         params.suppliers = new ArrayList<>();
@@ -82,6 +84,14 @@ public class SimulationParameters {
         params.roadAb = new Road(45);
         params.roadBc = new Road(15);
         params.roadCa = new Road(35);
+
+        params.consumerAmountRandom = new Rand(new EmpiricRNG(
+                new EmpiricPair(new UniformDiscreteRNG(10, 20), 0.02D),
+                new EmpiricPair(new UniformDiscreteRNG(21, 48), 0.2D),
+                new EmpiricPair(new UniformDiscreteRNG(49, 65), 0.33D),
+                new EmpiricPair(new UniformDiscreteRNG(66, 79), 0.3D),
+                new EmpiricPair(new UniformDiscreteRNG(80, 99), 0.15D)
+                ));
 
         return params;
     }

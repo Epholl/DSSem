@@ -8,7 +8,9 @@ import sk.epholl.dissim.sem3.managers.QuarryTransportationModelManager;
 import sk.epholl.dissim.sem3.simulation.*;
 import sk.epholl.dissim.sem3.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 //meta! id="3"
 public class QuarryTransportationModelAgent extends Agent {
@@ -17,6 +19,7 @@ public class QuarryTransportationModelAgent extends Agent {
     private boolean unloadersOpen;
 
     private LinkedList<MyMessage> nightParkedVehicles = new LinkedList<>();
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     public QuarryTransportationModelAgent(int id, Simulation mySim, Agent parent) {
         super(id, mySim, parent);
@@ -28,6 +31,11 @@ public class QuarryTransportationModelAgent extends Agent {
     public void prepareReplication() {
         super.prepareReplication();
         // Setup component for the next replication
+
+        nightParkedVehicles.clear();
+        vehicles.clear();
+        loadersOpen = true;
+        unloadersOpen = true;
 
         SimulationParameters params = ((MySimulation)mySim()).getSimParams();
 
@@ -53,7 +61,9 @@ public class QuarryTransportationModelAgent extends Agent {
 
         for (SimulationParameters.Vehicle v: params.availableVehicles) {
             message = new MyMessage(mySim());
-            message.setVehicle(new Vehicle(mySim(), v.capacity, v.speed, v.breakdownProbability, v.repairTime));
+            Vehicle vehicle = new Vehicle(mySim(), v.capacity, v.speed, v.breakdownProbability, v.repairTime);
+            vehicles.add(vehicle);
+            message.setVehicle(vehicle);
             ((QuarryTransportationModelManager)manager()).processLoadVehicle(message);
         }
     }

@@ -29,6 +29,9 @@ public class UnloaderManager extends Manager {
 
 	//meta! sender="QuarryTransportationModelAgent", id="13", type="Request"
 	public void processRequestMaterialConsumption(MessageForm message) {
+		MyMessage msg = (MyMessage) message;
+		double consumedAmount = msg.getAmount();
+		myAgent().removeCargoAmount(consumedAmount);
     }
 
 	//meta! userInfo="Process messages defined in code", id="0"
