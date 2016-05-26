@@ -120,4 +120,8 @@ public class LoaderAgent extends Agent {
         addOwnMessage(Mc.loaderClose);
 	}
 	//meta! tag="end"
+
+    public List<Loader> getLoaders() {
+        return loaders;
+    }
 }

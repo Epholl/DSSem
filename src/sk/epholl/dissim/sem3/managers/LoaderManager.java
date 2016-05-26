@@ -6,6 +6,7 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.LoaderAgent;
 import sk.epholl.dissim.sem3.entities.Loader;
+import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
@@ -42,6 +43,7 @@ public class LoaderManager extends Manager {
 	//meta! sender="QuarryTransportationModelAgent", id="17", type="Request"
 	public void processLoadVehicle(MessageForm message) {
 		MyMessage msg = (MyMessage) message;
+		msg.getVehicle().setState(Vehicle.STATE_WAITING + " loader");
 		myAgent().enqueueVehicle(msg);
 		tryLoadingNextVehicle();
     }
@@ -71,6 +73,7 @@ public class LoaderManager extends Manager {
 			MyMessage msg = myAgent().dequeueVehicle();
 			Loader loader = myAgent().getFreeLoader();
 			loader.setLoadedVehicle(msg.getVehicle());
+			msg.getVehicle().setState(Vehicle.STATE_LOADING);
 			msg.setLoader(loader);
 			msg.setCode(Mc.start);
 			msg.setAddressee(Id.loaderProcess);

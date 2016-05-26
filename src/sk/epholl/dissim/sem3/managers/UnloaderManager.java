@@ -6,6 +6,7 @@ import OSPABA.MessageForm;
 import OSPABA.Simulation;
 import sk.epholl.dissim.sem3.agents.UnloaderAgent;
 import sk.epholl.dissim.sem3.entities.Unloader;
+import sk.epholl.dissim.sem3.entities.Vehicle;
 import sk.epholl.dissim.sem3.simulation.Id;
 import sk.epholl.dissim.sem3.simulation.Mc;
 import sk.epholl.dissim.sem3.simulation.MyMessage;
@@ -43,6 +44,7 @@ public class UnloaderManager extends Manager {
 	//meta! sender="QuarryTransportationModelAgent", id="65", type="Request"
 	public void processUnloadVehicle(MessageForm message) {
 		MyMessage msg = (MyMessage) message;
+		msg.getVehicle().setState(Vehicle.STATE_WAITING + " unloader");
 		myAgent().enqueueVehicle(msg);
 		tryUnloadingNextVehicle();
 	}
@@ -79,6 +81,7 @@ public class UnloaderManager extends Manager {
 			MyMessage msg = myAgent().dequeueVehicle();
 			Unloader unloader = myAgent().getFreeUnloader();
 			unloader.setUnloadedVehicle(msg.getVehicle());
+			msg.getVehicle().setState(Vehicle.STATE_UNLOADING);
 			msg.setUnloader(unloader);
 			msg.setCode(Mc.start);
 			msg.setAddressee(Id.unloaderProcess);

@@ -40,6 +40,7 @@ public class NarrowRoad extends Entity {
         message.setTravelArriveTime(arriveTime);
         messages.addLast(message);
         vehicles.addLast(message.getVehicle());
+        message.getVehicle().setState(Vehicle.STATE_TRAVELLING + name);
         return travelDurationInSeconds;
     }
 

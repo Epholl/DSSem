@@ -145,4 +145,13 @@ public class UnloaderAgent extends Agent {
 		return currentStorageCargo < storageCargoCapacity;
 	}
 	//meta! tag="end"
+
+
+	public List<Unloader> getUnloaders() {
+		return unloaders;
+	}
+
+	public double getCurrentStorageCargo() {
+		return currentStorageCargo;
+	}
 }
