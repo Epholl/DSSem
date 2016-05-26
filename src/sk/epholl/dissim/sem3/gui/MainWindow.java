@@ -1,14 +1,12 @@
 package sk.epholl.dissim.sem3.gui;
 
+import sk.epholl.dissim.sem3.agents.QuarryTransportationModelAgent;
 import sk.epholl.dissim.sem3.simulation.MySimulation;
 import sk.epholl.dissim.sem3.simulation.SimulationParameters;
 import sk.epholl.dissim.sem3.util.Log;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.event.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -50,6 +48,12 @@ public class MainWindow extends JFrame {
     private JLabel deliveriesALabel;
     private JLabel deliveriesBLabel;
     private JLabel deliveriesCLabel;
+    private JLabel deliveriesASumLabel;
+    private JLabel deliveriesBSumLabel;
+    private JLabel deliveriesCSumLabel;
+    private JLabel deliveriesTotalLabel;
+    private JLabel deliveriesTotalSumlabel;
+    private JList vehiclesList;
 
     private PrintStream consolePrintStream;
 
@@ -57,7 +61,6 @@ public class MainWindow extends JFrame {
     private List<SimulationParameters.Vehicle> vehicleTypes;
 
     private MySimulation simulation;
-    private boolean simRunning = false;
 
     public MainWindow() {
         super("sem 3");
@@ -81,15 +84,41 @@ public class MainWindow extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!simRunning) {
-                    simRunning = true;
+                if (simulation == null || !simulation.isRunning()) {
                     startButton.setText("Pause");
                     createSingleRunSimulation();
+                } else if (simulation.isPaused()) {
+                    simulation.resumeSimulation();
+                    startButton.setText("Pause");
+                } else {
+                    simulation.pauseSimulation();
+                    startButton.setText("Resume");
                 }
             }
         });
         simSPeedSlider.addChangeListener(e -> {
             updateSingleSimulationSpeed();
+        });
+        vehiclesList.setModel(new ListModel<String>() {
+            @Override
+            public int getSize() {
+                if (simulation == null) {
+                    return 0;
+                } else {
+                    return simulation.quarryTransportationModelAgent().getVehicles().size();
+                }
+            }
+
+            @Override
+            public String getElementAt(int index) {
+                return simulation.quarryTransportationModelAgent().getVehicles().get(index).toString();
+            }
+
+            @Override
+            public void addListDataListener(ListDataListener l) { }
+
+            @Override
+            public void removeListDataListener(ListDataListener l) { }
         });
     }
 
@@ -242,12 +271,49 @@ public class MainWindow extends JFrame {
                 updateSimTimeLabel();
                 materialOnALabel.setText(String.format("%.2f", simulation.loaderAgent().getCurrentStorageCargo()));
                 materialOnBLabel.setText(String.format("%.2f", simulation.unloaderAgent().getCurrentStorageCargo()));
+                deliveriesALabel.setText("" + simulation.quarryTransportationModelAgent().getCountA());
+                deliveriesBLabel.setText("" + simulation.quarryTransportationModelAgent().getCountB());
+                deliveriesCLabel.setText("" + simulation.quarryTransportationModelAgent().getCountC());
+                QuarryTransportationModelAgent ag = simulation.quarryTransportationModelAgent();
+                deliveriesASumLabel.setText(String.format("%.2f", ag.getSumA()));
+                deliveriesBSumLabel.setText(String.format("%.2f", ag.getSumB()));
+                deliveriesCSumLabel.setText(String.format("%.2f", ag.getSumC()));
+                deliveriesTotalLabel.setText("" + (Long.parseLong(deliveriesALabel.getText()) + Long.parseLong(deliveriesBLabel.getText()) + Long.parseLong(deliveriesCLabel.getText())));
+                deliveriesTotalSumlabel.setText(String.format("%.2f", (ag.getSumA() + ag.getSumB() + ag.getSumC())));
 
+
+
+                vehiclesList.setModel(new ListModel<String>() {
+                    @Override
+                    public int getSize() {
+                        if (simulation == null) {
+                            return 0;
+                        } else {
+                            return simulation.quarryTransportationModelAgent().getVehicles().size();
+                        }
+                    }
+
+                    @Override
+                    public String getElementAt(int index) {
+                        return simulation.quarryTransportationModelAgent().getVehicles().get(index).toString();
+                    }
+
+                    @Override
+                    public void addListDataListener(ListDataListener l) { }
+
+                    @Override
+                    public void removeListDataListener(ListDataListener l) { }
+                });
+
+
+
+                
             });
         });
         simulation.onSimulationDidFinish(sim -> {
             SwingUtilities.invokeLater( () -> {
                 updateSimTimeLabel();
+                startButton.setText("Start");
             });
         });
         new Thread(new Runnable() {

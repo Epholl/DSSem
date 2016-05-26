@@ -362,7 +362,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="b55be" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="b55be" layout-manager="GridLayoutManager" row-count="8" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <tabbedpane title="Replication info"/>
@@ -372,57 +372,26 @@
                     <children>
                       <component id="96ca" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <text value="Material on A:"/>
                         </properties>
                       </component>
-                      <hspacer id="3187c">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                      </hspacer>
                       <vspacer id="6be93">
                         <constraints>
-                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
                       <component id="4bd31" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <text value="Material on B"/>
                         </properties>
                       </component>
-                      <component id="554c5" class="javax.swing.JLabel" binding="materialOnALabel">
-                        <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                            <minimum-size width="200" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text value="N/A"/>
-                        </properties>
-                      </component>
                       <component id="2ee94" class="javax.swing.JLabel" binding="materialOnBLabel">
-                        <constraints>
-                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text value="N/A"/>
-                        </properties>
-                      </component>
-                      <component id="69d6f" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text value="Cargo deliveries A:"/>
-                        </properties>
-                      </component>
-                      <component id="7ac03" class="javax.swing.JLabel" binding="deliveriesALabel">
                         <constraints>
                           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -430,23 +399,15 @@
                           <text value="N/A"/>
                         </properties>
                       </component>
-                      <component id="9bbe4" class="javax.swing.JLabel">
+                      <component id="69d6f" class="javax.swing.JLabel">
                         <constraints>
                           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Cargo deliveries B:"/>
+                          <text value="Cargo deliveries A:"/>
                         </properties>
                       </component>
-                      <component id="a7134" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text value="Cargo deliveries C:"/>
-                        </properties>
-                      </component>
-                      <component id="88339" class="javax.swing.JLabel" binding="deliveriesBLabel">
+                      <component id="7ac03" class="javax.swing.JLabel" binding="deliveriesALabel">
                         <constraints>
                           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -454,7 +415,23 @@
                           <text value="N/A"/>
                         </properties>
                       </component>
-                      <component id="717fa" class="javax.swing.JLabel" binding="deliveriesCLabel">
+                      <component id="9bbe4" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Cargo deliveries B:"/>
+                        </properties>
+                      </component>
+                      <component id="a7134" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Cargo deliveries C:"/>
+                        </properties>
+                      </component>
+                      <component id="88339" class="javax.swing.JLabel" binding="deliveriesBLabel">
                         <constraints>
                           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -462,6 +439,111 @@
                           <text value="N/A"/>
                         </properties>
                       </component>
+                      <component id="717fa" class="javax.swing.JLabel" binding="deliveriesCLabel">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="4377b" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Sum:"/>
+                        </properties>
+                      </component>
+                      <component id="d8add" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Sum:"/>
+                        </properties>
+                      </component>
+                      <component id="97522" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Sum:"/>
+                        </properties>
+                      </component>
+                      <component id="1fe20" class="javax.swing.JLabel" binding="deliveriesASumLabel">
+                        <constraints>
+                          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="100" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="57941" class="javax.swing.JLabel" binding="deliveriesBSumLabel">
+                        <constraints>
+                          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="bc785" class="javax.swing.JLabel" binding="deliveriesCSumLabel">
+                        <constraints>
+                          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="554c5" class="javax.swing.JLabel" binding="materialOnALabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="100" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="ba392" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Total:"/>
+                        </properties>
+                      </component>
+                      <component id="d43eb" class="javax.swing.JLabel" binding="deliveriesTotalLabel">
+                        <constraints>
+                          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <component id="8ad88" class="javax.swing.JLabel" binding="deliveriesTotalSumlabel">
+                        <constraints>
+                          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="N/A"/>
+                        </properties>
+                      </component>
+                      <scrollpane id="5b137">
+                        <constraints>
+                          <grid row="0" column="4" row-span="8" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="973eb" class="javax.swing.JList" binding="vehiclesList">
+                            <constraints/>
+                            <properties/>
+                          </component>
+                        </children>
+                      </scrollpane>
                     </children>
                   </grid>
                 </children>
